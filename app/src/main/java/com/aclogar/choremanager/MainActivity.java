@@ -108,7 +108,10 @@ public class MainActivity extends AppCompatActivity
 
             startActivityForResult(login, 1);
 
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.list_chores) {
+            Intent login = new Intent(this, LoginActivity.class);
+
+            startActivityForResult(login, 1);
 
         } else if (id == R.id.nav_slideshow) {
 
