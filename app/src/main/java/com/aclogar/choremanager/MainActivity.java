@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -75,6 +76,20 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+    /*
+    This gets us the email that was verified in the login page
+     */
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            if(resultCode == RESULT_OK){
+                String enteredEmail = data.getStringExtra("email");
+                TextView tv = (TextView)findViewById(R.id.user_email);
+                tv.setText(enteredEmail);
+            }
+        }
+    }
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -91,7 +106,7 @@ public class MainActivity extends AppCompatActivity
              */
             Intent login = new Intent(this, LoginActivity.class);
 
-            startActivity(login);
+            startActivityForResult(login, 1);
 
         } else if (id == R.id.nav_gallery) {
 

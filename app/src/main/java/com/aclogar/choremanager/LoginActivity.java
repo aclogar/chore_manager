@@ -3,6 +3,9 @@ package com.aclogar.choremanager;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -28,6 +31,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,10 +48,41 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      */
     private static final int REQUEST_READ_CONTACTS = 0;
 
+
     /**
      * A dummy authentication store containing known user names and passwords.
      * TODO: remove after connecting to a real authentication system.
      */
+    public static final String CREDENTIAL_LIST = "Credentials";
+
+    public boolean isValid(String email, String password){
+        if (email == null || password == null) return false;
+        SharedPreferences credentials = getSharedPreferences(CREDENTIAL_LIST, 0);
+        String actualPass = credentials.getString(email.toLowerCase(), null);
+        return actualPass!= null && actualPass.equals(password);
+    }
+
+    public boolean isExistingEmail(String email){
+        if(email == null) return false;
+        SharedPreferences credentials = getSharedPreferences(CREDENTIAL_LIST, 0);
+        String actualPass = credentials.getString(email.toLowerCase(), null);
+        return actualPass != null;
+    }
+
+    public boolean addUser(String email, String password){
+    try {
+        SharedPreferences credentials = getSharedPreferences(CREDENTIAL_LIST, 0);
+        SharedPreferences.Editor editor = credentials.edit();
+        editor.putString(email.toLowerCase(), password);
+
+        // Commit the edits!
+        editor.commit();
+    } catch (Exception e){
+        e.printStackTrace();
+        return false;
+    }
+        return true;
+    }
     private static final String[] DUMMY_CREDENTIALS = new String[]{
             "foo@example.com:hello", "bar@example.com:world"
     };
@@ -326,6 +361,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 return false;
             }
 
+            if (isValid(mEmail, mPassword)){
+                return true;
+            }else if(isExistingEmail(mEmail)){
+                return false;
+            }
+
+            /*
             for (String credential : DUMMY_CREDENTIALS) {
                 String[] pieces = credential.split(":");
                 if (pieces[0].equals(mEmail)) {
@@ -333,9 +375,23 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     return pieces[1].equals(mPassword);
                 }
             }
+            */
 
-            // TODO: register the new account here.
-            return true;
+            if(addUser(mEmail,mPassword)) {
+                try {
+                    Context context = getApplicationContext();
+                    CharSequence text = "Registered " + mEmail + " into the system";
+                    int duration = Toast.LENGTH_LONG;
+
+                    Toast.makeText(context, text, duration).show();
+                    // Simulate network access.
+                    Thread.sleep(Toast.LENGTH_LONG);
+                } catch (Exception e) {
+
+                }
+                return true;
+            }
+            return false;
         }
 
         @Override
@@ -344,6 +400,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             showProgress(false);
 
             if (success) {
+                Intent i = new Intent();
+                i.putExtra("email", mEmail);
+                setResult(RESULT_OK, i);
                 finish();
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
