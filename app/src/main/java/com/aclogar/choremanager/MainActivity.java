@@ -84,7 +84,13 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_camera) {
             // Handle the camera action
         } else if (id == R.id.login){
+
+            /*
+            This will find the class LoginActivity from com.aclogar.choremanager and can pass info
+            by using something like login.putExtra("VARIABLE NAME", "VALUE")
+             */
             Intent login = new Intent(this, LoginActivity.class);
+
             startActivity(login);
 
         } else if (id == R.id.nav_gallery) {
