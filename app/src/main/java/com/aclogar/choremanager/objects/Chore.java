@@ -9,6 +9,8 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
@@ -21,6 +23,58 @@ public class Chore {
 
     private String title;
     private String description;
+    private String owner_id;
+    private String assigne_id;
+    private String group_id;
+    private Date assgined_date;
+    private Date due_date;
+    private int priority;
+    private ArrayList<String> categories = new ArrayList<String>();
+
+    public Chore( String title, String description, String owner_id, String assigne_id
+            , String group_id, Date assgined_date, Date due_date,int priority, ArrayList<String> categories) {
+        this.due_date = due_date;
+        this.title = title;
+        this.description = description;
+        this.owner_id = owner_id;
+        this.assigne_id = assigne_id;
+        this.group_id = group_id;
+        this.assgined_date = assgined_date;
+        this.priority = priority;
+        this.categories = categories;
+    }
+
+    public Chore( String title, String description, String owner_id) {
+        this(title, description, owner_id, owner_id, null, null, null, 3, new ArrayList<String>());
+    }
+
+
+    public Chore( String title, String description, String owner_id, ArrayList<String> categories) {
+        this(title, description, owner_id, owner_id, null, null, null, 3, categories);
+    }
+
+    public Chore( String title, String description, String owner_id, int priority, ArrayList<String> categories) {
+        this(title, description, owner_id, owner_id, null, null, null, priority, categories);
+    }
+
+    public Chore( String title, String description, String owner_id, String assigne_id
+            , String group_id, Date assgined_date,Date due_date, ArrayList<String> categories) {
+
+        this(title, description, owner_id, assigne_id, group_id, assgined_date, due_date,3,categories);
+    }
+
+    public Chore( String title, String description, String owner_id, String assigne_id
+            , String group_id ,Date due_date, ArrayList<String> categories) {
+
+        this(title, description, owner_id, assigne_id, group_id, new Date(), due_date,3,categories);
+    }
+
+
+    public Chore( String title, String description, String owner_id, String assigne_id
+            , String group_id ,Date due_date,int priority, ArrayList<String> categories) {
+
+        this(title, description, owner_id, assigne_id, group_id, new Date(), due_date, priority,categories);
+    }
 
     public Chore(String title, String description){
         this.title = title;
@@ -48,7 +102,72 @@ public class Chore {
         this.title = title;
     }
 
+    public ArrayList<String> getCategories() {
+        return categories;
+    }
 
+    public void setCategories(ArrayList<String> categories) {
+        this.categories = categories;
+    }
+
+    public boolean addCategory(String category){
+        //if category must not be blank or already exist
+        if (category == null || category.isEmpty() || categories.contains(category))
+            return false;
+        return categories.add(category);
+    }
+
+    public boolean removeCategory(String category){
+        return categories.remove(category);
+    }
+
+    public String getOwner_id() {
+        return owner_id;
+    }
+
+    public void setOwner_id(String owner_id) {
+        this.owner_id = owner_id;
+    }
+
+    public String getAssigne_id() {
+        return assigne_id;
+    }
+
+    public void setAssigne_id(String assigne_id) {
+        this.assigne_id = assigne_id;
+    }
+
+    public String getGroup_id() {
+        return group_id;
+    }
+
+    public void setGroup_id(String group_id) {
+        this.group_id = group_id;
+    }
+
+    public Date getAssgined_date() {
+        return assgined_date;
+    }
+
+    public void setAssgined_date(Date assgined_date) {
+        this.assgined_date = assgined_date;
+    }
+
+    public Date getDue_date() {
+        return due_date;
+    }
+
+    public void setDue_date(Date due_date) {
+        this.due_date = due_date;
+    }
+
+    public int getPriority() {
+        return priority;
+    }
+
+    public void setPriority(int priority) {
+        this.priority = priority;
+    }
 
     private static final String API_URL = "http://www.aclogar.com:5000/chores/api/v1.0/";
     public static Chore retriveChore(String task_id) throws InterruptedException, ExecutionException, TimeoutException {
