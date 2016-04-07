@@ -15,6 +15,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.aclogar.choremanager.objects.Chore;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -114,7 +116,12 @@ public class MainActivity extends AppCompatActivity
             startActivityForResult(login, 1);
 
         } else if (id == R.id.nav_slideshow) {
-
+            try{
+                Chore c = Chore.retriveChore("2");
+                TextView hello_world = (TextView)findViewById(R.id.hello_text);
+                hello_world.setText(c.getTitle()+ " " + c.getDescription());
+            }
+            catch (Exception e ){}
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {
