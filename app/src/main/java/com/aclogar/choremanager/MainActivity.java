@@ -1,6 +1,7 @@
 package com.aclogar.choremanager;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -16,6 +17,9 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.aclogar.choremanager.objects.Chore;
+import com.google.gson.Gson;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -41,6 +45,19 @@ public class MainActivity extends AppCompatActivity
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
+
+        //creates
+        ArrayList<Chore> chores = new ArrayList<Chore>();
+        chores.add(new Chore("Do something", "a descritpon", "coledude919@gmail.com"));
+
+        //turns into json
+        Gson gson = new Gson();
+        String json = gson.toJson(chores);
+
+        TextView text = (TextView) findViewById(R.id.hello_text);
+        text.setText(json);
+
+        //prefsEditor.putString("MyObject", json);
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -88,6 +105,15 @@ public class MainActivity extends AppCompatActivity
                 String enteredEmail = data.getStringExtra("email");
                 TextView tv = (TextView)findViewById(R.id.user_email);
                 tv.setText(enteredEmail);
+
+
+                SharedPreferences tasks = getSharedPreferences("TASKS", 0);
+                //SharedPreferences.Editor editor = credentials.edit();
+                //editor.putString(enteredEmail.toLowerCase(), password);
+                String taskString = tasks.getString("TASKS", null);
+                TextView text = (TextView) findViewById(R.id.hello_text);
+                text.setText(taskString);
+
             }
         }
     }
@@ -116,6 +142,8 @@ public class MainActivity extends AppCompatActivity
             startActivityForResult(listpg, 1);
 
         } else if (id == R.id.nav_slideshow) {
+
+            //nothing ot see here
             try{
                 Chore c = Chore.retriveChore("2");
                 TextView hello_world = (TextView)findViewById(R.id.hello_text);

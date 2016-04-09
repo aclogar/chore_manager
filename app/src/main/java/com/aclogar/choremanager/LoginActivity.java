@@ -33,6 +33,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.aclogar.choremanager.objects.User;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,6 +56,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * TODO: remove after connecting to a real authentication system.
      */
     public static final String CREDENTIAL_LIST = "Credentials";
+    public static final String USER_LIST = "List_of_Users";
 
     public boolean isValid(String email, String password){
         if (email == null || password == null) return false;
@@ -74,6 +77,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         SharedPreferences credentials = getSharedPreferences(CREDENTIAL_LIST, 0);
         SharedPreferences.Editor editor = credentials.edit();
         editor.putString(email.toLowerCase(), password);
+        User new_user = new User(email.toLowerCase(), password, "Walter", email.toLowerCase());
+
+        //editor.putString()
+
+
 
         // Commit the edits!
         editor.commit();
