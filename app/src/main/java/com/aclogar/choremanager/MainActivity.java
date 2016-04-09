@@ -111,9 +111,9 @@ public class MainActivity extends AppCompatActivity
             startActivityForResult(login, 1);
 
         } else if (id == R.id.list_chores) {
-            Intent login = new Intent(this, LoginActivity.class);
+            Intent listpg = new Intent(this, ChoreListActivity.class);
 
-            startActivityForResult(login, 1);
+            startActivityForResult(listpg, 1);
 
         } else if (id == R.id.nav_slideshow) {
             try{
