@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.aclogar.choremanager.objects.Chore;
@@ -31,14 +32,6 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -79,8 +72,10 @@ public class MainActivity extends AppCompatActivity
 
 
         TextView text = (TextView) findViewById(R.id.hello_text);
-        text.setText(json);
+        //text.setText(json);
 
+        ListView lv=(ListView) findViewById(R.id.listView);
+        lv.setAdapter(new ChoreAdapter(this, chores));
         //prefsEditor.putString("MyObject", json);
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -113,6 +108,9 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Intent settings = new Intent(this, SettingsActivity.class);
+
+            startActivityForResult(settings, 1);
             return true;
         }
 
