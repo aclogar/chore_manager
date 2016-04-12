@@ -1,12 +1,18 @@
 package com.aclogar.choremanager.objects;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.Log;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.lang.reflect.Array;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
@@ -207,6 +213,35 @@ public class Chore {
     }
 
 
+    public static void saveChores(Context context, ArrayList<Chore> chores){
+        //context.getSharedPreferences();
+
+        //turns into json
+        Gson gson = new Gson();
+        String json = gson.toJson(chores);
+
+        SharedPreferences tasks = context.getSharedPreferences("TASKS", 0);
+        SharedPreferences.Editor editor = tasks.edit();
+        editor.putString("TASKS", json);
+        editor.commit();
+    }
+
+    public static ArrayList<Chore> getAllChores(Context context){
+        //turns into json
+        Gson gson = new Gson();
+        SharedPreferences tasks = context.getSharedPreferences("TASKS", 0);
+        String json = tasks.getString("TASKS", null);
+        ArrayList<Chore> chores = gson.fromJson(json, new TypeToken<ArrayList<ArrayList<Chore>>>() {}.getType());
+
+        return chores;
+
+    }
+
+    public static void addChore(Context context, Chore chore){
+        ArrayList<Chore> chores= getAllChores(context);
+        chores.add(chore);
+        saveChores(context, chores);
+    }
 
     private static class getJSON extends AsyncTask<String, Void, String>{
 

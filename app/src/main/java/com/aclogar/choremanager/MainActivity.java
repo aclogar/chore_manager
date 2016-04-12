@@ -65,10 +65,18 @@ public class MainActivity extends AppCompatActivity
         chores.add(new Chore("Fiber", "Have the whole worlds have 1Gb fiber", "google@gmail.com"));
         chores.add(new Chore("Water", "Have waves", "waterOcean@gmail.com"));
         chores.add(new Chore("Life", "Be a nice place for things to live", "waterOcean@gmail.com"));
+        chores.add(new Chore("Enjoyment", "Watch sharks fuck shit up", "waterOcean@gmail.com"));
 
         //turns into json
         Gson gson = new Gson();
         String json = gson.toJson(chores);
+
+        SharedPreferences tasks = getSharedPreferences("TASKS", 0);
+        SharedPreferences.Editor editor = tasks.edit();
+        editor.putString("TASKS", json);
+        editor.commit();
+
+
 
         TextView text = (TextView) findViewById(R.id.hello_text);
         text.setText(json);
@@ -157,15 +165,11 @@ public class MainActivity extends AppCompatActivity
 
             startActivityForResult(listpg, 1);
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_add_chore) {
 
-            //nothing ot see here
-            try{
-                Chore c = Chore.retriveChore("2");
-                TextView hello_world = (TextView)findViewById(R.id.hello_text);
-                hello_world.setText(c.getTitle()+ " " + c.getDescription());
-            }
-            catch (Exception e ){}
+            Intent addChore = new Intent(this, CreateChoreActivity.class);
+
+            startActivityForResult(addChore, 1);
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {
