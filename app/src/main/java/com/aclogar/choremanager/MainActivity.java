@@ -11,7 +11,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.aclogar.choremanager.objects.Chore;
@@ -29,6 +31,11 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        Spinner dropdown = (Spinner)findViewById(R.id.spinner1);
+        String[] items = new String[]{"option 1", "option 2", "somehting"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, items);
+        dropdown.setAdapter(adapter);
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -51,10 +58,10 @@ public class MainActivity extends AppCompatActivity
         chores.add(new Chore("Workout", "go to the gym", "batmanisinthecave@gmail.com"));
         chores.add(new Chore("Stop crime", "I having to stop the joker from destroying the city", "batmanisinthecave@gmail.com"));
         chores.add(new Chore("Build new toys", "Make new batarangs", "batmanisinthecave@gmail.com"));
-        chores.add(new Chore("Taring", "punch a boxing bad in total darkness", "batmanisinthecave@gmail.com"));
+        chores.add(new Chore("Taring", "punch a boxing bag in total darkness", "batmanisinthecave@gmail.com"));
         chores.add(new Chore("Things", "Take over the world", "google@gmail.com"));
         chores.add(new Chore("Updates", "Remove google+ from histroy", "google@gmail.com"));
-        chores.add(new Chore("Gmail", "Buy anything worth less than $1,000,000 including small countries", "google@gmail.com"));
+        chores.add(new Chore("Expand", "Buy anything worth less than $1,000,000 including small countries", "google@gmail.com"));
         chores.add(new Chore("Fiber", "Have the whole worlds have 1Gb fiber", "google@gmail.com"));
         chores.add(new Chore("Water", "Have waves", "waterOcean@gmail.com"));
         chores.add(new Chore("Life", "Be a nice place for things to live", "waterOcean@gmail.com"));

@@ -11,10 +11,6 @@
             android:icon="@drawable/ic_menu_camera"
             android:title="Import" />
         <item
-            android:id="@+id/list_chores"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="List of Chores" />
-        <item
             android:id="@+id/nav_add_chore"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Add Chore" />
