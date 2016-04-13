@@ -3,9 +3,6 @@ package com.aclogar.choremanager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -26,6 +23,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
+    @SuppressWarnings("deprecation")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -36,11 +34,13 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
+        if (drawer != null) {
+            drawer.setDrawerListener(toggle);
+        }
         toggle.syncState();
 
         //creates
-        ArrayList<Chore> chores = new ArrayList<Chore>();
+        ArrayList<Chore> chores = new ArrayList<>();
         // title, descritpon, email
         chores.add(new Chore("Do something", "having a dance party", "coledude919@gmail.com"));
         chores.add(new Chore("Clean HHD", "Clean old stuff on HD and defrag drive", "coledude919@gmail.com"));
@@ -75,17 +75,21 @@ public class MainActivity extends AppCompatActivity
         //text.setText(json);
 
         ListView lv=(ListView) findViewById(R.id.listView);
-        lv.setAdapter(new ChoreAdapter(this, chores));
+        if (lv != null) {
+            lv.setAdapter(new ChoreAdapter(this, chores));
+        }
         //prefsEditor.putString("MyObject", json);
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+        if (navigationView != null) {
+            navigationView.setNavigationItemSelectedListener(this);
+        }
     }
 
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
+        if (drawer != null && drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
@@ -126,7 +130,9 @@ public class MainActivity extends AppCompatActivity
             if(resultCode == RESULT_OK){
                 String enteredEmail = data.getStringExtra("email");
                 TextView tv = (TextView)findViewById(R.id.user_email);
-                tv.setText(enteredEmail);
+                if (tv != null) {
+                    tv.setText(enteredEmail);
+                }
 
 
                 SharedPreferences tasks = getSharedPreferences("TASKS", 0);
@@ -134,7 +140,9 @@ public class MainActivity extends AppCompatActivity
                 //editor.putString(enteredEmail.toLowerCase(), password);
                 String taskString = tasks.getString("TASKS", null);
                 TextView text = (TextView) findViewById(R.id.hello_text);
-                text.setText(taskString);
+                if (text != null) {
+                    text.setText(taskString);
+                }
 
             }
         }
@@ -159,9 +167,6 @@ public class MainActivity extends AppCompatActivity
             startActivityForResult(login, 1);
 
         } else if (id == R.id.list_chores) {
-            Intent listpg = new Intent(this, ChoreListActivity.class);
-
-            startActivityForResult(listpg, 1);
 
         } else if (id == R.id.nav_add_chore) {
 
@@ -177,7 +182,9 @@ public class MainActivity extends AppCompatActivity
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
+        if (drawer != null) {
+            drawer.closeDrawer(GravityCompat.START);
+        }
         return true;
     }
 }
