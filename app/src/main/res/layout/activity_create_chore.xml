@@ -129,5 +129,16 @@
             android:scrollIndicators="right"
             android:text="Large Text"
             android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <Button
+            android:id="@+id/chore_add_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/colorPrimary"
+            android:text="Add Chore"
+            android:textColor="#ffffff" />
+
     </LinearLayout>
+
 </ScrollView>

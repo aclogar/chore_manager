@@ -5,6 +5,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 public class CreateChoreActivity extends AppCompatActivity {
 
@@ -13,6 +16,16 @@ public class CreateChoreActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_chore);
         setupActionBar();
+        Button add = (Button) findViewById(R.id.chore_add_button);
+        if (add != null) {
+            add.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //TODO add actual button action
+                    Toast.makeText(v.getContext(), "Added Chore", Toast.LENGTH_LONG).show();
+                }
+            });
+        }
     }
 
     /**
