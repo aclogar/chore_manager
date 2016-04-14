@@ -7,7 +7,10 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.aclogar.choremanager.objects.Chore;
 
 public class CreateChoreActivity extends AppCompatActivity {
 
@@ -22,7 +25,14 @@ public class CreateChoreActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     //TODO add actual button action
+                    TextView choreNameTV = (TextView) findViewById(R.id.inputChoreName);
+                    TextView choreAssigneeTV = (TextView) findViewById(R.id.inputChoreAssignee);
+                    TextView choreDescriptionTV = (TextView) findViewById(R.id.inputChoreDescription);
+
+                    Chore c = new Chore(choreNameTV.getText().toString(), choreDescriptionTV.getText().toString(), "me", choreAssigneeTV.getText().toString());
+                    Chore.addChore(v.getContext(), c);
                     Toast.makeText(v.getContext(), "Added Chore", Toast.LENGTH_LONG).show();
+                    finish();
                 }
             });
         }

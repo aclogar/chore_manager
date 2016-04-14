@@ -58,6 +58,10 @@ public class Chore {
         this(title, description, owner_id, owner_id, null, null, null, 3, categories);
     }
 
+    public Chore(String title, String description, String owner_id, String assigne_id) {
+        this(title, description, owner_id, assigne_id, null, null, null, 3, null);
+    }
+
     public Chore( String title, String description, String owner_id, int priority, ArrayList<String> categories) {
         this(title, description, owner_id, owner_id, null, null, null, priority, categories);
     }
@@ -181,9 +185,7 @@ public class Chore {
 
     public boolean addCategory(String category) {
         //if category must not be blank or already exist
-        if (category == null || category.isEmpty() || categories.contains(category))
-            return false;
-        return categories.add(category);
+        return !(category == null || category.isEmpty() || categories.contains(category)) && categories.add(category);
     }
 
     public boolean removeCategory(String category) {

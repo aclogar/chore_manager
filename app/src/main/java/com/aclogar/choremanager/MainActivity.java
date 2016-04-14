@@ -47,46 +47,12 @@ public class MainActivity extends AppCompatActivity
         }
         toggle.syncState();
 
-        //creates
-        ArrayList<Chore> chores = new ArrayList<>();
-        // title, descritpon, email
-        chores.add(new Chore("Do something", "having a dance party", "coledude919@gmail.com"));
-        chores.add(new Chore("Clean HHD", "Clean old stuff on HD and defrag drive", "coledude919@gmail.com"));
-        chores.add(new Chore("Watch TV", "Keep up with the season of Archer", "coledude919@gmail.com"));
-        chores.add(new Chore("HW", "Do all assigned HW and projects", "coledude919@gmail.com"));
-        chores.add(new Chore("Fun", "Play disc golf", "coledude919@gmail.com"));
-        chores.add(new Chore("Games", "play league of legends and Pokemon", "batmanisinthecave@gmail.com"));
-        chores.add(new Chore("Workout", "go to the gym", "batmanisinthecave@gmail.com"));
-        chores.add(new Chore("Stop crime", "I having to stop the joker from destroying the city", "batmanisinthecave@gmail.com"));
-        chores.add(new Chore("Build new toys", "Make new batarangs", "batmanisinthecave@gmail.com"));
-        chores.add(new Chore("Taring", "punch a boxing bag in total darkness", "batmanisinthecave@gmail.com"));
-        chores.add(new Chore("Things", "Take over the world", "google@gmail.com"));
-        chores.add(new Chore("Updates", "Remove google+ from histroy", "google@gmail.com"));
-        chores.add(new Chore("Expand", "Buy anything worth less than $1,000,000 including small countries", "google@gmail.com"));
-        chores.add(new Chore("Fiber", "Have the whole worlds have 1Gb fiber", "google@gmail.com"));
-        chores.add(new Chore("Water", "Have waves", "waterOcean@gmail.com"));
-        chores.add(new Chore("Life", "Be a nice place for things to live", "waterOcean@gmail.com"));
-        chores.add(new Chore("Enjoyment", "Watch sharks fuck shit up", "waterOcean@gmail.com"));
-
-        //turns into json
-        Gson gson = new Gson();
-        String json = gson.toJson(chores);
-
-        SharedPreferences tasks = getSharedPreferences("TASKS", 0);
-        SharedPreferences.Editor editor = tasks.edit();
-        editor.putString("TASKS", json);
-        editor.commit();
-
-        chores = Chore.getAllChores(getBaseContext());
-
-        TextView text = (TextView) findViewById(R.id.hello_text);
+        loadTasks();
+        //TextView text = (TextView) findViewById(R.id.hello_text);
         //text.setText(json);
 
 
-        ListView lv=(ListView) findViewById(R.id.listView);
-        if (lv != null) {
-            lv.setAdapter(new ChoreAdapter(this, chores));
-        }
+
         //prefsEditor.putString("MyObject", json);
 
 
@@ -107,6 +73,52 @@ public class MainActivity extends AppCompatActivity
             } else {
                 tv.setText("Need to Sign In");
             }
+        }
+    }
+
+    private void loadTasks() {
+        //creates
+        ArrayList<Chore> chores = Chore.getAllChores(this);
+
+
+        if (chores == null || chores.isEmpty()) {
+
+            chores = new ArrayList<>();
+            // title, descritpon, email
+            chores.add(new Chore("Do something", "having a dance party", "coledude919@gmail.com"));
+            chores.add(new Chore("Clean HHD", "Clean old stuff on HD and defrag drive", "coledude919@gmail.com"));
+            chores.add(new Chore("Watch TV", "Keep up with the season of Archer", "coledude919@gmail.com"));
+            chores.add(new Chore("HW", "Do all assigned HW and projects", "coledude919@gmail.com"));
+            chores.add(new Chore("Fun", "Play disc golf", "coledude919@gmail.com"));
+            chores.add(new Chore("Games", "play league of legends and Pokemon", "batmanisinthecave@gmail.com"));
+            chores.add(new Chore("Workout", "go to the gym", "batmanisinthecave@gmail.com"));
+            chores.add(new Chore("Stop crime", "I having to stop the joker from destroying the city", "batmanisinthecave@gmail.com"));
+            chores.add(new Chore("Build new toys", "Make new batarangs", "batmanisinthecave@gmail.com"));
+            chores.add(new Chore("Taring", "punch a boxing bag in total darkness", "batmanisinthecave@gmail.com"));
+            chores.add(new Chore("Things", "Take over the world", "google@gmail.com"));
+            chores.add(new Chore("Updates", "Remove google+ from histroy", "google@gmail.com"));
+            chores.add(new Chore("Expand", "Buy anything worth less than $1,000,000 including small countries", "google@gmail.com"));
+            chores.add(new Chore("Fiber", "Have the whole worlds have 1Gb fiber", "google@gmail.com"));
+            chores.add(new Chore("Water", "Have waves", "waterOcean@gmail.com"));
+            chores.add(new Chore("Life", "Be a nice place for things to live", "waterOcean@gmail.com"));
+            chores.add(new Chore("Enjoyment", "Watch sharks fuck shit up", "waterOcean@gmail.com"));
+
+
+            //turns into json
+            Gson gson = new Gson();
+            String json = gson.toJson(chores);
+
+            SharedPreferences tasks = getSharedPreferences("TASKS", 0);
+            SharedPreferences.Editor editor = tasks.edit();
+            editor.putString("TASKS", json);
+            editor.commit();
+
+            chores = Chore.getAllChores(getBaseContext());
+        }
+
+        ListView lv = (ListView) findViewById(R.id.listView);
+        if (lv != null) {
+            lv.setAdapter(new ChoreAdapter(this, chores));
         }
     }
 
@@ -150,6 +162,7 @@ public class MainActivity extends AppCompatActivity
      */
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        loadTasks();
         if (requestCode == 1) {
             if(resultCode == RESULT_OK){
                 String enteredEmail =

@@ -32,7 +32,7 @@
             android:layout_alignParentStart="true"
             android:layout_below="@+id/textChoreAssignee"
             android:ems="10"
-            android:inputType="textEmailAddress" />
+            android:inputType="text" />
 
         <TextView
             android:id="@+id/textChoreAssignee"
@@ -102,33 +102,6 @@
             android:layout_marginTop="46dp"
             android:text="Priority"
             android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <ProgressBar
-            android:id="@+id/progressBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Large Text"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Large Text"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:scrollIndicators="right"
-            android:text="Large Text"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <Button
             android:id="@+id/chore_add_button"
