@@ -180,7 +180,10 @@ public class MainActivity extends AppCompatActivity
             Intent addChore = new Intent(this, CreateChoreActivity.class);
 
             startActivityForResult(addChore, 1);
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.group_page) {
+            //Intent grouppage = new Intent(this, GroupActivity.class);
+
+            //startActivityForResult(grouppage, 1);
 
         } else if (id == R.id.nav_share) {
 
