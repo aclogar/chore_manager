@@ -59,7 +59,7 @@ public class ChoreAdapter extends BaseAdapter {
                 // TODO Auto-generated method stub
                 Gson gson = new Gson();
                 String choreJson = gson.toJson(getItem(position));
-                Intent i = new Intent();
+                Intent i = new Intent(context, EditChoreActivity.class);
                 i.putExtra("CHORE", choreJson);
                 context.startActivity(i);
                 Toast.makeText(context, "You Clicked " + chores.get(position).getTitle(), Toast.LENGTH_LONG).show();
