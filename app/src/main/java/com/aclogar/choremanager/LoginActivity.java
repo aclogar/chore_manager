@@ -3,24 +3,22 @@ package com.aclogar.choremanager;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.app.LoaderManager.LoaderCallbacks;
 import android.content.Context;
+import android.content.CursorLoader;
 import android.content.Intent;
+import android.content.Loader;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.app.LoaderManager.LoaderCallbacks;
-
-import android.content.CursorLoader;
-import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
-
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
@@ -46,51 +44,15 @@ import static android.Manifest.permission.READ_CONTACTS;
 public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
 
     /**
-     * Id to identity READ_CONTACTS permission request.
-     */
-    private static final int REQUEST_READ_CONTACTS = 0;
-
-
-    /**
      * A dummy authentication store containing known user names and passwords.
      * TODO: remove after connecting to a real authentication system.
      */
     public static final String CREDENTIAL_LIST = "Credentials";
     public static final String USER_LIST = "List_of_Users";
-
-    public boolean isValid(String email, String password){
-        if (email == null || password == null) return false;
-        SharedPreferences credentials = getSharedPreferences(CREDENTIAL_LIST, 0);
-        String actualPass = credentials.getString(email.toLowerCase(), null);
-        return actualPass!= null && actualPass.equals(password);
-    }
-
-    public boolean isExistingEmail(String email){
-        if(email == null) return false;
-        SharedPreferences credentials = getSharedPreferences(CREDENTIAL_LIST, 0);
-        String actualPass = credentials.getString(email.toLowerCase(), null);
-        return actualPass != null;
-    }
-
-    public boolean addUser(String email, String password){
-    try {
-        SharedPreferences credentials = getSharedPreferences(CREDENTIAL_LIST, 0);
-        SharedPreferences.Editor editor = credentials.edit();
-        editor.putString(email.toLowerCase(), password);
-        User new_user = new User(email.toLowerCase(), password, "Walter", email.toLowerCase());
-
-        //editor.putString()
-
-
-
-        // Commit the edits!
-        editor.commit();
-    } catch (Exception e){
-        e.printStackTrace();
-        return false;
-    }
-        return true;
-    }
+    /**
+     * Id to identity READ_CONTACTS permission request.
+     */
+    private static final int REQUEST_READ_CONTACTS = 0;
     private static final String[] DUMMY_CREDENTIALS = new String[]{
             "foo@example.com:hello", "bar@example.com:world"
     };
@@ -98,12 +60,44 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * Keep track of the login task to ensure we can cancel it if requested.
      */
     private UserLoginTask mAuthTask = null;
-
     // UI references.
     private AutoCompleteTextView mEmailView;
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
+
+    public boolean isValid(String email, String password) {
+        if (email == null || password == null) return false;
+        SharedPreferences credentials = getSharedPreferences(CREDENTIAL_LIST, 0);
+        String actualPass = credentials.getString(email.toLowerCase(), null);
+        return actualPass != null && actualPass.equals(password);
+    }
+
+    public boolean isExistingEmail(String email) {
+        if (email == null) return false;
+        SharedPreferences credentials = getSharedPreferences(CREDENTIAL_LIST, 0);
+        String actualPass = credentials.getString(email.toLowerCase(), null);
+        return actualPass != null;
+    }
+
+    public boolean addUser(String email, String password) {
+        try {
+            SharedPreferences credentials = getSharedPreferences(CREDENTIAL_LIST, 0);
+            SharedPreferences.Editor editor = credentials.edit();
+            editor.putString(email.toLowerCase(), password);
+            User new_user = new User(email.toLowerCase(), password, "Walter", email.toLowerCase());
+
+            //editor.putString()
+
+
+            // Commit the edits!
+            editor.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -188,6 +182,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private void setupActionBar() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
             // Show the Up button in the action bar.
+
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
     }
@@ -364,10 +359,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
             try {
                 // Simulate network access.
-                Thread.sleep(2000);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 return false;
             }
+            User.setCurrentLoggedIn(getBaseContext(), mEmail);
 
             if (isValid(mEmail, mPassword)){
                 return true;
@@ -388,11 +384,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             if(addUser(mEmail,mPassword)) {
                 try {
                     Context context = getApplicationContext();
+                    User.setCurrentLoggedIn(context, mEmail);
                     CharSequence text = "Registered " + mEmail + " into the system";
                     int duration = Toast.LENGTH_LONG;
-
                     Toast.makeText(context, text, duration).show();
-                    // Simulate network access.
                     Thread.sleep(Toast.LENGTH_LONG);
                 } catch (Exception e) {
 

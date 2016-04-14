@@ -33,6 +33,14 @@
                 android:value="com.aclogar.choremanager.MainActivity" />
         </activity>
         <activity
+            android:name=".GroupActivity"
+            android:label="@string/group_select_activity"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.aclogar.choremanager.MainActivity" />
+        </activity>
+        <activity
             android:name=".CreateChoreActivity"
             android:label="@string/title_activity_create_chore"
             android:parentActivityName=".MainActivity">
@@ -47,11 +55,15 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.aclogar.choremanager.MainActivity" />
-        </activity><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
-     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
+        </activity>
+        <!--
+ ATTENTION: This was auto-generated to add Google Play services to your project for
+     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
+        -->
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
+
     </application>
 
 </manifest>

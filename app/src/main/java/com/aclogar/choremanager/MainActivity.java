@@ -17,6 +17,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.aclogar.choremanager.objects.Chore;
+import com.aclogar.choremanager.objects.User;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -76,10 +77,11 @@ public class MainActivity extends AppCompatActivity
         editor.putString("TASKS", json);
         editor.commit();
 
-
+        chores = Chore.getAllChores(getBaseContext());
 
         TextView text = (TextView) findViewById(R.id.hello_text);
         //text.setText(json);
+
 
         ListView lv=(ListView) findViewById(R.id.listView);
         if (lv != null) {
@@ -87,9 +89,24 @@ public class MainActivity extends AppCompatActivity
         }
         //prefsEditor.putString("MyObject", json);
 
+
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         if (navigationView != null) {
             navigationView.setNavigationItemSelectedListener(this);
+        }
+
+
+        //TODO still need to fix this nonsense
+        String enteredEmail =
+                User.getCurrentUser(getBaseContext());
+        //data.getStringExtra("email");
+        TextView tv = (TextView) findViewById(R.id.user_email);
+        if (tv != null) {
+            if (!enteredEmail.equals(User.DEFAULT_USER)) {
+                tv.setText(enteredEmail);
+            } else {
+                tv.setText("Need to Sign In");
+            }
         }
     }
 
@@ -135,20 +152,12 @@ public class MainActivity extends AppCompatActivity
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1) {
             if(resultCode == RESULT_OK){
-                String enteredEmail = data.getStringExtra("email");
+                String enteredEmail =
+                        User.getCurrentUser(getBaseContext());
+                //data.getStringExtra("email");
                 TextView tv = (TextView)findViewById(R.id.user_email);
-                if (tv != null) {
+                if (tv != null && !enteredEmail.equals(User.DEFAULT_USER)) {
                     tv.setText(enteredEmail);
-                }
-
-
-                SharedPreferences tasks = getSharedPreferences("TASKS", 0);
-                //SharedPreferences.Editor editor = credentials.edit();
-                //editor.putString(enteredEmail.toLowerCase(), password);
-                String taskString = tasks.getString("TASKS", null);
-                TextView text = (TextView) findViewById(R.id.hello_text);
-                if (text != null) {
-                    text.setText(taskString);
                 }
 
             }
@@ -181,9 +190,9 @@ public class MainActivity extends AppCompatActivity
 
             startActivityForResult(addChore, 1);
         } else if (id == R.id.group_page) {
-            //Intent grouppage = new Intent(this, GroupActivity.class);
+            Intent grouppage = new Intent(this, GroupActivity.class);
 
-            //startActivityForResult(grouppage, 1);
+            startActivityForResult(grouppage, 1);
 
         } else if (id == R.id.nav_share) {
 

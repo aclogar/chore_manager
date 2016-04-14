@@ -12,13 +12,11 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.lang.reflect.Array;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 /**
@@ -27,6 +25,7 @@ import java.util.concurrent.TimeoutException;
 public class Chore {
 
 
+    private static final String API_URL = "http://www.aclogar.com:5000/chores/api/v1.0/";
     private String title;
     private String description;
     private String owner_id;
@@ -35,7 +34,7 @@ public class Chore {
     private Date assgined_date;
     private Date due_date;
     private int priority;
-    private ArrayList<String> categories = new ArrayList<String>();
+    private ArrayList<String> categories = new ArrayList<>();
 
     public Chore( String title, String description, String owner_id, String assigne_id
             , String group_id, Date assgined_date, Date due_date,int priority, ArrayList<String> categories) {
@@ -50,10 +49,10 @@ public class Chore {
         this.categories = categories;
     }
 
+
     public Chore( String title, String description, String owner_id) {
         this(title, description, owner_id, owner_id, null, null, null, 3, new ArrayList<String>());
     }
-
 
     public Chore( String title, String description, String owner_id, ArrayList<String> categories) {
         this(title, description, owner_id, owner_id, null, null, null, 3, categories);
@@ -69,12 +68,12 @@ public class Chore {
         this(title, description, owner_id, assigne_id, group_id, assgined_date, due_date,3,categories);
     }
 
+
     public Chore( String title, String description, String owner_id, String assigne_id
             , String group_id ,Date due_date, ArrayList<String> categories) {
 
         this(title, description, owner_id, assigne_id, group_id, new Date(), due_date,3,categories);
     }
-
 
     public Chore( String title, String description, String owner_id, String assigne_id
             , String group_id ,Date due_date,int priority, ArrayList<String> categories) {
@@ -87,10 +86,74 @@ public class Chore {
         this.description = description;
     }
 
-    public Chore(String title){
+
+    public Chore(String title) {
         this(title, "");
     }
 
+    public static Chore retriveChore(String task_id) throws InterruptedException, ExecutionException, TimeoutException {
+        System.out.println("Fetching from API");
+        String title, description;
+        AsyncTask<String, Void, String> task = new getJSON().execute("chores/" + task_id);
+        String data;
+        try {
+            URL url = new URL(API_URL + "chores/" + task_id);
+            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+            try {
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+                StringBuilder stringBuilder = new StringBuilder();
+                String line;
+                while ((line = bufferedReader.readLine()) != null) {
+                    stringBuilder.append(line).append("\n");
+                }
+                bufferedReader.close();
+                data = stringBuilder.toString();
+            } finally {
+                urlConnection.disconnect();
+            }
+        } catch (Exception e) {
+            Log.e("ERROR", e.getMessage(), e);
+            return null;
+        }
+
+        try {
+            JSONObject json = new JSONObject(data);
+            return new Chore(json.getString("title"), json.getString("description"));
+        } catch (Exception e) {
+            Log.e("ERROR", e.getMessage(), e);
+            return null;
+        }
+    }
+
+    public static void saveChores(Context context, ArrayList<Chore> chores) {
+        //context.getSharedPreferences();
+
+        //turns into json
+        Gson gson = new Gson();
+        String json = gson.toJson(chores);
+
+        SharedPreferences tasks = context.getSharedPreferences("TASKS", 0);
+        SharedPreferences.Editor editor = tasks.edit();
+        editor.putString("TASKS", json);
+        editor.commit();
+    }
+
+    public static ArrayList<Chore> getAllChores(Context context) {
+        //turns into json
+        Gson gson = new Gson();
+        SharedPreferences tasks = context.getSharedPreferences("TASKS", 0);
+        String json = tasks.getString("TASKS", null);
+
+        return gson.fromJson(json, new TypeToken<ArrayList<Chore>>() {
+        }.getType());
+
+    }
+
+    public static void addChore(Context context, Chore chore) {
+        ArrayList<Chore> chores = getAllChores(context);
+        chores.add(chore);
+        saveChores(context, chores);
+    }
 
     public String getDescription() {
         return description;
@@ -116,14 +179,14 @@ public class Chore {
         this.categories = categories;
     }
 
-    public boolean addCategory(String category){
+    public boolean addCategory(String category) {
         //if category must not be blank or already exist
         if (category == null || category.isEmpty() || categories.contains(category))
             return false;
         return categories.add(category);
     }
 
-    public boolean removeCategory(String category){
+    public boolean removeCategory(String category) {
         return categories.remove(category);
     }
 
@@ -173,74 +236,6 @@ public class Chore {
 
     public void setPriority(int priority) {
         this.priority = priority;
-    }
-
-    private static final String API_URL = "http://www.aclogar.com:5000/chores/api/v1.0/";
-    public static Chore retriveChore(String task_id) throws InterruptedException, ExecutionException, TimeoutException {
-        System.out.println("Fetching from API");
-        String title, description;
-        AsyncTask<String, Void, String> task = new getJSON().execute("chores/" + task_id);
-        String data;
-        try {
-            URL url = new URL(API_URL + "chores/" + task_id);
-            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-            try {
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
-                StringBuilder stringBuilder = new StringBuilder();
-                String line;
-                while ((line = bufferedReader.readLine()) != null) {
-                    stringBuilder.append(line).append("\n");
-                }
-                bufferedReader.close();
-                data = stringBuilder.toString();
-            }
-            finally{
-                urlConnection.disconnect();
-            }
-        }
-        catch(Exception e) {
-            Log.e("ERROR", e.getMessage(), e);
-            return null;
-        }
-
-        try {
-            JSONObject json = new JSONObject(data);
-            return new Chore(json.getString("title"), json.getString("description"));
-        }catch (Exception e){
-            Log.e("ERROR", e.getMessage(), e);
-            return null;
-        }
-    }
-
-
-    public static void saveChores(Context context, ArrayList<Chore> chores){
-        //context.getSharedPreferences();
-
-        //turns into json
-        Gson gson = new Gson();
-        String json = gson.toJson(chores);
-
-        SharedPreferences tasks = context.getSharedPreferences("TASKS", 0);
-        SharedPreferences.Editor editor = tasks.edit();
-        editor.putString("TASKS", json);
-        editor.commit();
-    }
-
-    public static ArrayList<Chore> getAllChores(Context context){
-        //turns into json
-        Gson gson = new Gson();
-        SharedPreferences tasks = context.getSharedPreferences("TASKS", 0);
-        String json = tasks.getString("TASKS", null);
-        ArrayList<Chore> chores = gson.fromJson(json, new TypeToken<ArrayList<ArrayList<Chore>>>() {}.getType());
-
-        return chores;
-
-    }
-
-    public static void addChore(Context context, Chore chore){
-        ArrayList<Chore> chores= getAllChores(context);
-        chores.add(chore);
-        saveChores(context, chores);
     }
 
     private static class getJSON extends AsyncTask<String, Void, String>{

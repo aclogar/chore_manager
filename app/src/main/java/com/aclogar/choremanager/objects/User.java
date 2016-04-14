@@ -1,5 +1,8 @@
 package com.aclogar.choremanager.objects;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -8,13 +11,14 @@ import java.util.ArrayList;
  */
 public class User implements Serializable{
 
+    public static final String DEFAULT_USER = "NOT_LOGGED";
     private static final long serialVersionUID = 32L;
-
+    private static final String CURRENT_USER = "CURRENT_USER_LOGGED_IN";
     private String user_id;
     private String user_name;
     private String user_email;
     private String password;
-    private ArrayList<Group> groups = new ArrayList<Group>();
+    private ArrayList<Group> groups = new ArrayList<>();
 
     public User(String user_id,  String password, String user_name, String user_email, ArrayList<Group> groups) {
         this.user_id = user_id;
@@ -29,6 +33,19 @@ public class User implements Serializable{
         this.user_name = user_name;
         this.user_email = user_email;
         this.password= password;
+    }
+
+    public static boolean setCurrentLoggedIn(Context context, String user) {
+        SharedPreferences users = context.getSharedPreferences(CURRENT_USER, 0);
+        SharedPreferences.Editor editor = users.edit();
+        editor.putString("USER", user);
+        editor.commit();
+        return true;
+    }
+
+    public static String getCurrentUser(Context context) {
+        SharedPreferences users = context.getSharedPreferences(CURRENT_USER, 0);
+        return users.getString("USER", DEFAULT_USER);
     }
 
     public String getUser_id() {
