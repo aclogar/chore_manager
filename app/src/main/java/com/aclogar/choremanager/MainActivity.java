@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         Spinner dropdown = (Spinner)findViewById(R.id.spinner1);
-        String[] items = new String[]{"option 1", "option 2", "somehting"};
+        String[] items = new String[]{"None", "Assignee", "Category"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, items);
         dropdown.setAdapter(adapter);
 

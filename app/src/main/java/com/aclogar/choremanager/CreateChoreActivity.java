@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +21,17 @@ public class CreateChoreActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_chore);
         setupActionBar();
+
+        Spinner dropdownPriority = (Spinner)findViewById(R.id.spinnerChorePriority);
+        String[] itemsPriority = new String[]{"1", "2", "3", "4", "5"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, itemsPriority);
+        dropdownPriority.setAdapter(adapter);
+
+        Spinner dropdownCategory = (Spinner)findViewById(R.id.spinnerChoreCategory);
+        String[] itemsCategory = new String[]{"None"};
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, itemsCategory);
+        dropdownCategory.setAdapter(adapter);
+
         Button add = (Button) findViewById(R.id.chore_add_button);
         if (add != null) {
             add.setOnClickListener(new View.OnClickListener() {
@@ -28,6 +41,7 @@ public class CreateChoreActivity extends AppCompatActivity {
                     TextView choreNameTV = (TextView) findViewById(R.id.inputChoreName);
                     TextView choreAssigneeTV = (TextView) findViewById(R.id.inputChoreAssignee);
                     TextView choreDescriptionTV = (TextView) findViewById(R.id.inputChoreDescription);
+
 
                     Chore c = new Chore(choreNameTV.getText().toString(), choreDescriptionTV.getText().toString(), "me", choreAssigneeTV.getText().toString());
                     Chore.addChore(v.getContext(), c);
