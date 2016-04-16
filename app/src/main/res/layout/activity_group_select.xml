@@ -9,16 +9,20 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".GroupActivity">
 
-    <TextView
-        android:id="@+id/hello_text"
-        android:layout_width="wrap_content"
+    <Spinner
+        android:id="@+id/spinner1"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="NONE " />
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown" />
 
     <ListView
-        android:id="@+id/listView"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
-
+        android:id="@+id/list"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/spinner1">
     </ListView>
+
+
+
 </RelativeLayout>
