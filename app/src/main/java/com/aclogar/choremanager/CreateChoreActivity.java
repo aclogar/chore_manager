@@ -41,9 +41,11 @@ public class CreateChoreActivity extends AppCompatActivity {
                     TextView choreNameTV = (TextView) findViewById(R.id.inputChoreName);
                     TextView choreAssigneeTV = (TextView) findViewById(R.id.inputChoreAssignee);
                     TextView choreDescriptionTV = (TextView) findViewById(R.id.inputChoreDescription);
+                    Spinner spinnerChorePriority = (Spinner) findViewById(R.id.spinnerChorePriority);
 
 
-                    Chore c = new Chore(choreNameTV.getText().toString(), choreDescriptionTV.getText().toString(), "me", choreAssigneeTV.getText().toString());
+                    Chore c = new Chore(choreNameTV.getText().toString(), choreDescriptionTV.getText().toString(), "me",
+                            choreAssigneeTV.getText().toString(), Integer.parseInt(spinnerChorePriority.getSelectedItem().toString()));
                     Chore.addChore(v.getContext(), c);
                     Toast.makeText(v.getContext(), "Added Chore", Toast.LENGTH_LONG).show();
                     finish();

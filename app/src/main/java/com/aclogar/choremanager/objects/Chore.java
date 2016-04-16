@@ -58,8 +58,8 @@ public class Chore {
         this(title, description, owner_id, owner_id, null, null, null, 3, categories);
     }
 
-    public Chore(String title, String description, String owner_id, String assigne_id) {
-        this(title, description, owner_id, assigne_id, null, null, null, 3, null);
+    public Chore(String title, String description, String owner_id, String assignee_id, int priority) {
+        this(title, description, owner_id, assignee_id, null, null, null, priority, null);
     }
 
     public Chore( String title, String description, String owner_id, int priority, ArrayList<String> categories) {
@@ -157,6 +157,20 @@ public class Chore {
         ArrayList<Chore> chores = getAllChores(context);
         chores.add(chore);
         saveChores(context, chores);
+    }
+
+    public static void replaceChore(Context context, Chore oldChore, Chore newChore){
+        ArrayList<Chore> chores = getAllChores(context);
+        int index = chores.indexOf((Chore)oldChore);
+        chores.remove(oldChore);
+        chores.add(index, newChore);
+        Chore.saveChores(context, chores);
+    }
+
+    public static void deleteChore(Context context, Chore chore){
+        ArrayList<Chore> chores = getAllChores(context);
+        chores.remove(chore);
+        Chore.saveChores(context, chores);
     }
 
     public String getDescription() {
@@ -270,5 +284,44 @@ public class Chore {
                 return null;
             }
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Chore chore = (Chore) o;
+
+        if (getPriority() != chore.getPriority()) return false;
+        if (!getTitle().equals(chore.getTitle())) return false;
+        if (getDescription() != null ? !getDescription().equals(chore.getDescription()) : chore.getDescription() != null)
+            return false;
+        if (getOwner_id() != null ? !getOwner_id().equals(chore.getOwner_id()) : chore.getOwner_id() != null)
+            return false;
+        if (getAssigne_id() != null ? !getAssigne_id().equals(chore.getAssigne_id()) : chore.getAssigne_id() != null)
+            return false;
+        if (getGroup_id() != null ? !getGroup_id().equals(chore.getGroup_id()) : chore.getGroup_id() != null)
+            return false;
+        if (getAssgined_date() != null ? !getAssgined_date().equals(chore.getAssgined_date()) : chore.getAssgined_date() != null)
+            return false;
+        if (getDue_date() != null ? !getDue_date().equals(chore.getDue_date()) : chore.getDue_date() != null)
+            return false;
+        return !(getCategories() != null ? !getCategories().equals(chore.getCategories()) : chore.getCategories() != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getTitle().hashCode();
+        result = 31 * result + (getDescription() != null ? getDescription().hashCode() : 0);
+        result = 31 * result + (getOwner_id() != null ? getOwner_id().hashCode() : 0);
+        result = 31 * result + (getAssigne_id() != null ? getAssigne_id().hashCode() : 0);
+        result = 31 * result + (getGroup_id() != null ? getGroup_id().hashCode() : 0);
+        result = 31 * result + (getAssgined_date() != null ? getAssgined_date().hashCode() : 0);
+        result = 31 * result + (getDue_date() != null ? getDue_date().hashCode() : 0);
+        result = 31 * result + getPriority();
+        result = 31 * result + (getCategories() != null ? getCategories().hashCode() : 0);
+        return result;
     }
 }
