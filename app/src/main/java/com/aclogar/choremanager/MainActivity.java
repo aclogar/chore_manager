@@ -15,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.aclogar.choremanager.objects.Chore;
 import com.aclogar.choremanager.objects.User;
@@ -24,6 +25,8 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    public static ChoreAdapter adapter;
 
     @Override
     @SuppressWarnings("deprecation")
@@ -118,7 +121,9 @@ public class MainActivity extends AppCompatActivity
 
         ListView lv = (ListView) findViewById(R.id.listView);
         if (lv != null) {
-            lv.setAdapter(new ChoreAdapter(this, chores));
+            adapter = new ChoreAdapter(this, chores);
+
+            lv.setAdapter(adapter);
         }
     }
 
@@ -152,6 +157,15 @@ public class MainActivity extends AppCompatActivity
 
             startActivityForResult(settings, 1);
             return true;
+        }
+        if (id == R.id.action_refresh){
+            Toast.makeText(this, "Refreshing...", Toast.LENGTH_SHORT);
+            ListView lv = (ListView) findViewById(R.id.listView);
+            if (lv != null) {
+                adapter = new ChoreAdapter(this, Chore.getAllChores(this));
+
+                lv.setAdapter(adapter);
+            }
         }
 
         return super.onOptionsItemSelected(item);

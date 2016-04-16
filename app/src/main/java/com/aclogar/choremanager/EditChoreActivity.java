@@ -109,6 +109,7 @@ public class EditChoreActivity extends AppCompatActivity {
                 Toast.makeText(context, oldChore.getTitle() + " was deleted", Toast.LENGTH_LONG).show();
 
                 Chore.deleteChore(context, oldChore);
+                MainActivity.adapter.notifyDataSetChanged();
                 finish();
 
 
