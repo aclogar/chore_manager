@@ -1,17 +1,22 @@
 package com.aclogar.choremanager;
 
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.aclogar.choremanager.objects.Chore;
 import com.google.gson.Gson;
@@ -23,13 +28,16 @@ public class EditChoreActivity extends AppCompatActivity {
     EditText inputAssignee;
     Spinner prioritySpinner;
     Button saveBtn;
+    Button deleteBtn;
     Chore oldChore;
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_chore);
         Intent intent = getIntent();
+        context=getBaseContext();
         Spinner dropdownPriority = (Spinner)findViewById(R.id.spinnerChorePriority);
         String[] itemsPriority = new String[]{"1", "2", "3", "4", "5"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, itemsPriority);
@@ -83,4 +91,31 @@ public class EditChoreActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.edit, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        MenuItem actionViewItem = menu.findItem(R.id.action_delete);
+        // Retrieve the action-view from menu
+        actionViewItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+
+                Toast.makeText(context, oldChore.getTitle() + " was deleted", Toast.LENGTH_LONG).show();
+
+                Chore.deleteChore(context, oldChore);
+                finish();
+
+
+                return false;
+            }
+        });
+        // Handle button click here
+        return super.onPrepareOptionsMenu(menu);
+    }
 }

@@ -62,7 +62,7 @@ public class ChoreAdapter extends BaseAdapter {
                 Intent i = new Intent(context, EditChoreActivity.class);
                 i.putExtra("CHORE", choreJson);
                 context.startActivity(i);
-                Toast.makeText(context, "You Clicked " + chores.get(position).getTitle(), Toast.LENGTH_LONG).show();
+                //Toast.makeText(context, "You Clicked " + chores.get(position).getTitle(), Toast.LENGTH_LONG).show();
             }
         });
 
