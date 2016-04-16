@@ -1,6 +1,7 @@
 package com.aclogar.choremanager;
 
 import android.annotation.TargetApi;
+import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -21,6 +22,7 @@ public class CreateChoreActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_chore);
         setupActionBar();
+
 
         Spinner dropdownPriority = (Spinner)findViewById(R.id.spinnerChorePriority);
         String[] itemsPriority = new String[]{"1", "2", "3", "4", "5"};
