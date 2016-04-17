@@ -19,6 +19,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.aclogar.choremanager.objects.Chore;
+import com.aclogar.choremanager.objects.Group;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -59,6 +60,10 @@ public class GroupActivity extends AppCompatActivity {
                 "Adapter implementation",
                 "Simple List View In Android",
         };
+        ArrayList<Group> group = Group.getAllGroups(this);
+        if (listView != null) {
+            listView.setAdapter(new GroupAdapter(this, group));
+        }
 
         // Define a new Adapter
         // First parameter - Context
@@ -66,7 +71,7 @@ public class GroupActivity extends AppCompatActivity {
         // Third parameter - ID of the TextView to which the data is written
         // Forth - the Array of data
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+      /*  ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, android.R.id.text1, values);
 
 
@@ -93,6 +98,7 @@ public class GroupActivity extends AppCompatActivity {
             }
 
         });
+        */
     }
 
 
