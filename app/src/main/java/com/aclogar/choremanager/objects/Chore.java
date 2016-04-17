@@ -95,6 +95,7 @@ public class Chore {
         this(title, "");
     }
 
+    // Not being used ATM
     public static Chore retriveChore(String task_id) throws InterruptedException, ExecutionException, TimeoutException {
         System.out.println("Fetching from API");
         String title, description;
