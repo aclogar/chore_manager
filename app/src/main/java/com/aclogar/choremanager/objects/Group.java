@@ -70,9 +70,13 @@ public class Group {
         Gson gson = new Gson();
         SharedPreferences tasks = context.getSharedPreferences("GROUP", 0);
         String json = tasks.getString("GROUP", null);
-
-        return gson.fromJson(json, new TypeToken<ArrayList<Group>>() {
+        ArrayList<Group> groups = gson.fromJson(json, new TypeToken<ArrayList<Group>>() {
         }.getType());
+        if (groups == null || groups.isEmpty()){
+            resetData(context);
+            groups = getAllGroups(context);
+        }
+        return groups;
     }
 
     public static void addGroup(Context context, Group group) {
