@@ -224,9 +224,7 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.login){
+        if (id == R.id.login) {
 
             /*
             This will find the class LoginActivity from com.aclogar.choremanager and can pass info
@@ -247,11 +245,6 @@ public class MainActivity extends AppCompatActivity
             Intent grouppage = new Intent(this, GroupActivity.class);
 
             startActivityForResult(grouppage, 1);
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

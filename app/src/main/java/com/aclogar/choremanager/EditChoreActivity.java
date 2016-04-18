@@ -105,13 +105,26 @@ public class EditChoreActivity extends AppCompatActivity {
         actionViewItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-
                 Toast.makeText(context, oldChore.getTitle() + " was deleted", Toast.LENGTH_LONG).show();
 
                 Chore.deleteChore(context, oldChore);
                 MainActivity.adapter.notifyDataSetChanged();
                 finish();
 
+
+                return false;
+            }
+        });
+
+        MenuItem actionComplete = menu.findItem(R.id.action_complete);
+        actionComplete.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                Toast.makeText(context, oldChore.getTitle() + " was marked as " + (oldChore.isCompleted() ? "not completed" : "completed"), Toast.LENGTH_LONG).show();
+                Chore newChore = oldChore;
+                newChore.setCompleted(!oldChore.isCompleted());
+                Chore.replaceChore(context, oldChore, newChore);
+                finish();
 
                 return false;
             }

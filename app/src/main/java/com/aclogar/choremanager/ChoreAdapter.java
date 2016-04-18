@@ -2,6 +2,7 @@ package com.aclogar.choremanager;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,10 +54,15 @@ public class ChoreAdapter extends BaseAdapter {
         holder.desc = (TextView) rowView.findViewById(R.id.chore_desc);
         holder.title.setText(chores.get(position).getTitle());
         holder.desc.setText(chores.get(position).getDescription());
-        rowView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
+        if(chores.get(position).isCompleted()) {
+            // TODO Auto-generated method stub
+            holder.title.setPaintFlags(holder.title.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+
+            holder.desc.setPaintFlags(holder.desc.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+        }
+                rowView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
                 Gson gson = new Gson();
                 String choreJson = gson.toJson(getItem(position));
                 Intent i = new Intent(context, EditChoreActivity.class);
