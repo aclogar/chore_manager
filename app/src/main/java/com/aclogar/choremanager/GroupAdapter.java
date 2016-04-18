@@ -59,11 +59,11 @@ public class GroupAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                Gson gson = new Gson();
-                String choreJson = gson.toJson(getItem(position));
-                Intent i = new Intent(context, EditChoreActivity.class);
-                i.putExtra("CHORE", choreJson);
-                context.startActivity(i);
+                //Gson gson = new Gson();
+                //String choreJson = gson.toJson(getItem(position));
+                //Intent i = new Intent(context, EditChoreActivity.class);
+                //i.putExtra("CHORE", choreJson);
+                //context.startActivity(i);
 
                 //Toast.makeText(context, "You Clicked " + chores.get(position).getTitle(), Toast.LENGTH_LONG).show();
             }

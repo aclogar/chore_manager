@@ -11,6 +11,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -27,6 +29,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     public static ChoreAdapter adapter;
+    MainActivity main = this;
 
     @Override
     @SuppressWarnings("deprecation")
@@ -35,10 +38,41 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        main=this;
         Spinner dropdown = (Spinner)findViewById(R.id.spinner1);
-        String[] items = new String[]{"None", "Assignee", "Category"};
+        String[] items = new String[]{"None", "Assignee", "Title", "Date"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, items);
+        dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                ArrayList<Chore> chores;
+                if(position == 2){
+                    chores = Chore.sortBy(view.getContext(), Chore.TITLE);
+                }
+                else if(position ==1){
+                    chores = Chore.sortBy(view.getContext(), Chore.ASSIGNEE);
+                }
+                else if(position == 3){
+                    chores = Chore.sortBy(view.getContext(), Chore.DUE_DATE);
+                }
+                else {
+                    chores = Chore.getAllChores(view.getContext());
+                }
+
+                ListView lv = (ListView) findViewById(R.id.listView);
+                if (lv != null) {
+                    lv.setAdapter(new ChoreAdapter(main, chores));
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                ListView lv = (ListView) findViewById(R.id.listView);
+                if (lv != null) {
+                    lv.setAdapter(new ChoreAdapter(main, Chore.getAllChores(parent.getContext())));
+                }
+            }
+        });
         dropdown.setAdapter(adapter);
 
 
@@ -51,14 +85,6 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
 
         loadTasks();
-        //TextView text = (TextView) findViewById(R.id.hello_text);
-        //text.setText(json);
-
-
-
-        //prefsEditor.putString("MyObject", json);
-
-
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         if (navigationView != null) {
             navigationView.setNavigationItemSelectedListener(this);
@@ -152,12 +178,13 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
+        /*
         if (id == R.id.action_settings) {
             Intent settings = new Intent(this, SettingsActivity.class);
 
             startActivityForResult(settings, 1);
             return true;
-        }
+        }*/
         if (id == R.id.action_refresh){
             Toast.makeText(this, "Refreshing...", Toast.LENGTH_SHORT);
             ListView lv = (ListView) findViewById(R.id.listView);

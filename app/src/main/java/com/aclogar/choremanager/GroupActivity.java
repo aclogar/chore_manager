@@ -33,11 +33,6 @@ public class GroupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_group_select);
         setupActionBar();
-
-        Spinner dropdown = (Spinner)findViewById(R.id.spinner1);
-        String[] items = new String[]{"Add", "Remove"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, items);
-        dropdown.setAdapter(adapter);
     }
 
     /**

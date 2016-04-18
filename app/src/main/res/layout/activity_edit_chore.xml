@@ -41,7 +41,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/inputChoreAssignee"
-            android:layout_marginTop="48dp"
+            android:layout_marginTop="30dp"
             android:text="Assignee"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -62,7 +62,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/inputChoreDescription"
-            android:layout_marginTop="48dp"
+            android:layout_marginTop="30dp"
             android:text="Description"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -82,7 +82,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/inputChoreDescription"
-            android:layout_marginTop="46dp"
+            android:layout_marginTop="30dp"
             android:text="Priority"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -99,7 +99,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/inputChoreDescription"
-            android:layout_marginTop="46dp"
+            android:layout_marginTop="30dp"
             android:text="Category"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 

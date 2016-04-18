@@ -35,6 +35,7 @@ public class Chore {
     private Date due_date;
     private int priority;
     private ArrayList<String> categories = new ArrayList<>();
+    private boolean completed;
 
     public Chore( String title, String description, String owner_id, String assigne_id
             , String group_id, Date assgined_date, Date due_date,int priority, ArrayList<String> categories) {
@@ -162,7 +163,7 @@ public class Chore {
 
     public static void replaceChore(Context context, Chore oldChore, Chore newChore){
         ArrayList<Chore> chores = getAllChores(context);
-        int index = chores.indexOf((Chore)oldChore);
+        int index = chores.indexOf((Chore) oldChore);
         chores.remove(oldChore);
         chores.add(index, newChore);
         Chore.saveChores(context, chores);
@@ -255,6 +256,14 @@ public class Chore {
         this.priority = priority;
     }
 
+    public boolean isCompleted() {
+        return completed;
+    }
+
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
+    }
+
     private static class getJSON extends AsyncTask<String, Void, String>{
 
         @Override
@@ -285,6 +294,81 @@ public class Chore {
                 return null;
             }
         }
+    }
+
+    private static int compareTitleAsc(Chore chore1, Chore chore2){
+        return chore1.getTitle().compareToIgnoreCase(chore2.getTitle());
+    }
+
+    private static int compareTitleDesc(Chore chore1, Chore chore2){
+        return chore2.getTitle().compareToIgnoreCase(chore1.getTitle());
+    }
+
+    private static int compareAssigneeAsc(Chore chore1, Chore chore2){
+        return chore1.getAssigne_id().compareToIgnoreCase(chore2.getAssigne_id());
+    }
+
+    private static int compareAssigneeDesc(Chore chore1, Chore chore2){
+        return chore2.getAssigne_id().compareToIgnoreCase(chore1.getAssigne_id());
+    }
+
+    private static int compareDueDate(Chore chore1, Chore chore2){
+        if (chore1.due_date == null && chore2.due_date == null)
+            return 0;
+        else if(chore1.due_date == null)
+            return 1;
+        else if(chore2.due_date == null)
+            return -1;
+        else return chore1.getDue_date().compareTo(chore2.getDue_date());
+    }
+
+    public static final String TITLE = "TITLE_ASCENDING";
+    public static final String TITLE_DESCENDING = "TITLE_DESCENDING";
+    public static final String ASSIGNEE = "ASSIGNEE_ASCENDING";
+    public static final String ASSIGNEE_DESCENDING = "ASSIGNEE_DESCENDING";
+    public static final String DUE_DATE = "DUE_DATE";
+
+    public static ArrayList<Chore> sortBy(Context context, String sortBy){
+        ArrayList<Chore> chores = getAllChores(context);
+
+            Chore tmp;
+            int i;
+            boolean unsorted = true;
+
+            while (unsorted){
+                unsorted = false;
+                for( i=0;  i < chores.size()-1;  i++ )
+                {
+                    if (sortBy.equals(TITLE)) {
+                        if (Chore.compareTitleAsc(chores.get(i), chores.get(i + 1)) > 0)   // change to > for ascending sort
+                        {
+                            tmp = chores.get(i);                //swap elements
+                            chores.remove(tmp);
+                            chores.add(i + 1, tmp);
+                            unsorted = true;              //shows a swap occurred
+                        }
+                    } else if(sortBy.equals(ASSIGNEE)) {
+                        if (Chore.compareAssigneeAsc(chores.get(i), chores.get(i + 1)) > 0)   // change to > for ascending sort
+                        {
+                            tmp = chores.get(i);                //swap elements
+                            chores.remove(tmp);
+                            chores.add(i + 1, tmp);
+                            unsorted = true;              //shows a swap occurred
+                        }
+                    }else if(sortBy.equals(DUE_DATE)) {
+                        if (Chore.compareDueDate(chores.get(i), chores.get(i + 1)) > 0)   // change to > for ascending sort
+                        {
+                            tmp = chores.get(i);                //swap elements
+                            chores.remove(tmp);
+                            chores.add(i + 1, tmp);
+                            unsorted = true;              //shows a swap occurred
+                        }
+                    }
+                }
+            }
+
+
+        return chores;
     }
 
     @Override
