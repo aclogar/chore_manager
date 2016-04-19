@@ -1,6 +1,8 @@
 package com.aclogar.choremanager;
 
 import android.annotation.TargetApi;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -13,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -20,6 +23,8 @@ import android.widget.Toast;
 
 import com.aclogar.choremanager.objects.Chore;
 import com.google.gson.Gson;
+
+import java.util.Calendar;
 
 public class EditChoreActivity extends AppCompatActivity {
 
@@ -31,6 +36,20 @@ public class EditChoreActivity extends AppCompatActivity {
     Button deleteBtn;
     Chore oldChore;
     Context context;
+    private DatePicker datePicker;
+    private Calendar calendar;
+    private TextView dateView;
+    private int year, month, day;
+    private DatePickerDialog.OnDateSetListener myDateListener = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker arg0, int arg1, int arg2, int arg3) {
+            // TODO Auto-generated method stub
+            // arg1 = year
+            // arg2 = month
+            // arg3 = day
+            showDate(arg1, arg2 + 1, arg3);
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +73,14 @@ public class EditChoreActivity extends AppCompatActivity {
         inputAssignee = (EditText)findViewById(R.id.inputChoreAssignee);
         prioritySpinner = (Spinner) findViewById(R.id.spinnerChorePriority);
         saveBtn = (Button) findViewById(R.id.chore_save_button);
+
+        dateView = (TextView) findViewById(R.id.inputDueDate);
+        calendar = Calendar.getInstance();
+        year = calendar.get(Calendar.YEAR);
+
+        month = calendar.get(Calendar.MONTH);
+        day = calendar.get(Calendar.DAY_OF_MONTH);
+        showDate(year, month + 1, day);
 
         Gson gson = new Gson();
         oldChore = gson.fromJson(intent.getStringExtra("CHORE"), Chore.class);
@@ -131,5 +158,26 @@ public class EditChoreActivity extends AppCompatActivity {
         });
         // Handle button click here
         return super.onPrepareOptionsMenu(menu);
+    }
+
+    @SuppressWarnings("deprecation")
+    public void setDate(View view) {
+        showDialog(999);
+        Toast.makeText(getApplicationContext(), "ca", Toast.LENGTH_SHORT)
+                .show();
+    }
+
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        // TODO Auto-generated method stub
+        if (id == 999) {
+            return new DatePickerDialog(this, myDateListener, year, month, day);
+        }
+        return null;
+    }
+
+    private void showDate(int year, int month, int day) {
+        dateView.setText(new StringBuilder().append(month).append("/")
+                .append(day).append("/").append(year));
     }
 }

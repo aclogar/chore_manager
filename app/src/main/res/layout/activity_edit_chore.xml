@@ -76,6 +76,37 @@
             android:minWidth="200dp" />
 
         <TextView
+            android:id="@+id/textDueDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/inputChoreDescription"
+            android:layout_marginTop="30dp"
+            android:text="Due Date"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/inputDueDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="date" />
+
+            <Button
+                android:id="@+id/dateBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="setDate"
+                android:text="Select Date" />
+        </LinearLayout>
+        <TextView
             android:id="@+id/textChorePriority"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -104,9 +135,9 @@
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <Spinner
+            android:id="@+id/spinnerChoreCategory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/spinnerChoreCategory"
             android:spinnerMode="dropdown" />
 
         <Button

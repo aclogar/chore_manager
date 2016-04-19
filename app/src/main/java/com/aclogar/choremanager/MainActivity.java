@@ -1,5 +1,7 @@
 package com.aclogar.choremanager;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -14,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -24,12 +27,14 @@ import com.aclogar.choremanager.objects.User;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     public static ChoreAdapter adapter;
     MainActivity main = this;
+
 
     @Override
     @SuppressWarnings("deprecation")
@@ -74,7 +79,6 @@ public class MainActivity extends AppCompatActivity
             }
         });
         dropdown.setAdapter(adapter);
-
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -253,4 +257,5 @@ public class MainActivity extends AppCompatActivity
         }
         return true;
     }
+
 }
