@@ -26,6 +26,7 @@ import com.aclogar.choremanager.objects.Chore;
 import com.aclogar.choremanager.objects.User;
 import com.google.gson.Gson;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -34,7 +35,8 @@ public class MainActivity extends AppCompatActivity
 
     public static ChoreAdapter adapter;
     MainActivity main = this;
-
+    ListView lv;
+    ArrayList<Chore> chores;
 
     @Override
     @SuppressWarnings("deprecation")
@@ -111,7 +113,7 @@ public class MainActivity extends AppCompatActivity
 
     private void loadTasks() {
         //creates
-        ArrayList<Chore> chores = Chore.getAllChores(this);
+        chores = Chore.getAllChores(this);
 
 
         if (chores == null || chores.isEmpty()) {
@@ -148,7 +150,21 @@ public class MainActivity extends AppCompatActivity
 
             chores = Chore.getAllChores(getBaseContext());
         }
+        Thread t = new Thread() {
+            public void run() {
+                while (true) {
+                    ArrayList<Chore> newChore = Chore.getAllChores(main);
+                    if (!newChore.equals(chores)) {
+                        adapter = new ChoreAdapter(main, newChore);
+                        chores = newChore;
+                        adapter.notifyDataSetChanged();
 
+                    }
+                }
+
+            }
+        };
+        //t.start();
         ListView lv = (ListView) findViewById(R.id.listView);
         if (lv != null) {
             adapter = new ChoreAdapter(this, chores);

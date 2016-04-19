@@ -19,10 +19,13 @@ import android.widget.Toast;
 
 import com.aclogar.choremanager.objects.Chore;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class CreateChoreActivity extends AppCompatActivity {
 
+    SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
     private DatePicker datePicker;
     private Calendar calendar;
     private TextView dateView;
@@ -71,14 +74,21 @@ public class CreateChoreActivity extends AppCompatActivity {
                     TextView choreNameTV = (TextView) findViewById(R.id.inputChoreName);
                     TextView choreAssigneeTV = (TextView) findViewById(R.id.inputChoreAssignee);
                     TextView choreDescriptionTV = (TextView) findViewById(R.id.inputChoreDescription);
+                    TextView dateTV = (TextView) findViewById(R.id.inputDueDate);
                     Spinner spinnerChorePriority = (Spinner) findViewById(R.id.spinnerChorePriority);
 
 
                     Chore c = new Chore(choreNameTV.getText().toString(), choreDescriptionTV.getText().toString(), "me",
                             choreAssigneeTV.getText().toString(), Integer.parseInt(spinnerChorePriority.getSelectedItem().toString()));
-                    Chore.addChore(v.getContext(), c);
-                    Toast.makeText(v.getContext(), "Added Chore", Toast.LENGTH_LONG).show();
-                    finish();
+                    try {
+                        c.setDue_date(formatter.parse(dateTV.getText().toString()));
+                        Chore.addChore(v.getContext(), c);
+                        Toast.makeText(v.getContext(), "Added Chore", Toast.LENGTH_LONG).show();
+                        finish();
+                    } catch (Exception e) {
+                        dateTV.setError("Invalid Date");
+                    }
+
                 }
             });
         }
@@ -101,8 +111,6 @@ public class CreateChoreActivity extends AppCompatActivity {
     @SuppressWarnings("deprecation")
     public void setDate(View view) {
         showDialog(999);
-        Toast.makeText(getApplicationContext(), "ca", Toast.LENGTH_SHORT)
-                .show();
     }
 
     @Override

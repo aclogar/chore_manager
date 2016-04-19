@@ -24,10 +24,13 @@ import android.widget.Toast;
 import com.aclogar.choremanager.objects.Chore;
 import com.google.gson.Gson;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class EditChoreActivity extends AppCompatActivity {
 
+    SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
     EditText inputTitle;
     EditText inputDesc;
     EditText inputAssignee;
@@ -40,6 +43,7 @@ public class EditChoreActivity extends AppCompatActivity {
     private Calendar calendar;
     private TextView dateView;
     private int year, month, day;
+
     private DatePickerDialog.OnDateSetListener myDateListener = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker arg0, int arg1, int arg2, int arg3) {
@@ -75,12 +79,13 @@ public class EditChoreActivity extends AppCompatActivity {
         saveBtn = (Button) findViewById(R.id.chore_save_button);
 
         dateView = (TextView) findViewById(R.id.inputDueDate);
-        calendar = Calendar.getInstance();
+        /*calendar = Calendar.getInstance();
         year = calendar.get(Calendar.YEAR);
 
         month = calendar.get(Calendar.MONTH);
         day = calendar.get(Calendar.DAY_OF_MONTH);
-        showDate(year, month + 1, day);
+
+        showDate(year, month + 1, day);*/
 
         Gson gson = new Gson();
         oldChore = gson.fromJson(intent.getStringExtra("CHORE"), Chore.class);
@@ -89,15 +94,27 @@ public class EditChoreActivity extends AppCompatActivity {
         inputDesc.setText(oldChore.getDescription());
         inputAssignee.setText(oldChore.getAssigne_id());
         prioritySpinner.setSelection(oldChore.getPriority() - 1);
-
-
+        Date dueDate = oldChore.getDue_date();
+        if (dueDate != null) {
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(dueDate);
+            showDate(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH) + 1, cal.get(Calendar.DAY_OF_MONTH));
+        }
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Chore newChore = new Chore(inputTitle.getText().toString(), inputDesc.getText().toString(), "me",
                         inputAssignee.getText().toString(), Integer.parseInt(prioritySpinner.getSelectedItem().toString()));
-                Chore.replaceChore(v.getContext(), oldChore, newChore);
-                finish();
+
+                TextView dateTV = (TextView) findViewById(R.id.inputDueDate);
+                try {
+                    newChore.setDue_date(formatter.parse(dateTV.getText().toString()));
+                    Chore.replaceChore(v.getContext(), oldChore, newChore);
+                    finish();
+                } catch (Exception e) {
+                    dateTV.setError("Invalid Date");
+                }
+
             }
         });
 
@@ -163,8 +180,6 @@ public class EditChoreActivity extends AppCompatActivity {
     @SuppressWarnings("deprecation")
     public void setDate(View view) {
         showDialog(999);
-        Toast.makeText(getApplicationContext(), "ca", Toast.LENGTH_SHORT)
-                .show();
     }
 
     @Override
