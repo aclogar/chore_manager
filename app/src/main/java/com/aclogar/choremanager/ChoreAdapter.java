@@ -46,11 +46,13 @@ public class ChoreAdapter extends BaseAdapter {
         return 0;
     }
 
+
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         // TODO Auto-generated method stub
         Holder holder = new Holder();
         View rowView;
+        final String title = chores.get(position).getTitle();
         rowView = inflater.inflate(R.layout.chore_item, null);
         holder.title = (TextView) rowView.findViewById(R.id.chore_title);
         holder.desc = (TextView) rowView.findViewById(R.id.chore_desc);
@@ -58,11 +60,11 @@ public class ChoreAdapter extends BaseAdapter {
         holder.checkBox.setChecked(chores.get(position).isCompleted());
         holder.title.setText(chores.get(position).getTitle());
         holder.desc.setText(chores.get(position).getDescription());
-
         holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 chores.get(position).setCompleted(isChecked);
+                Toast.makeText(context, title + " was marked as " + (isChecked ? "not completed" : "completed"), Toast.LENGTH_LONG).show();
                 Chore.saveChores(context, chores);
             }
         });

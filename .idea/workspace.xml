@@ -39,9 +39,8 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2fa376e3-7096-4543-85db-fa352d4f2c40" name="Default" comment="appearance things">
+    <list default="true" id="2fa376e3-7096-4543-85db-fa352d4f2c40" name="Default" comment="checkboxes">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/aclogar/choremanager/ChoreAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/aclogar/choremanager/ChoreAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/chore_item.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/chore_item.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="chore_manager.iws" />
@@ -134,6 +133,16 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="EditChoreActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aclogar/choremanager/EditChoreActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-12.222222">
+              <caret line="161" column="166" selection-start-line="161" selection-start-column="16" selection-end-line="161" selection-end-column="166" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="chore_list.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/chore_list.xml">
           <provider editor-type-id="text-editor">
@@ -151,7 +160,7 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/chore_item.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="1.8235294">
-              <caret line="8" column="28" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
+              <caret line="9" column="44" selection-start-line="9" selection-start-column="44" selection-end-line="9" selection-end-column="44" />
               <folding />
             </state>
           </provider>
@@ -173,11 +182,11 @@
       <file leaf-file-name="ChoreAdapter.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aclogar/choremanager/ChoreAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.14487633">
-              <caret line="58" column="16" selection-start-line="58" selection-start-column="16" selection-end-line="58" selection-end-column="16" />
+            <state vertical-scroll-proportion="0.6607774">
+              <caret line="67" column="50" selection-start-line="67" selection-start-column="50" selection-end-line="67" selection-end-column="50" />
               <folding>
-                <element signature="e#1944#2238#0" expanded="true" />
-                <element signature="e#2237#2238#0" expanded="true" />
+                <element signature="e#2006#2440#0" expanded="true" />
+                <element signature="e#2439#2440#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -255,16 +264,6 @@
                 <marker date="1461105842461" expanded="false" signature="14220:15310" placeholder="{...}" />
                 <marker date="1461105842461" expanded="true" signature="14301:15304" placeholder="{...}" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="2" column="22" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -2162,7 +2161,7 @@
     <property name="settings.editor.selected.configurable" value="android.sdk-updates" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
-    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="TA9610799N" />
+    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="51a4b6dd" />
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="emulator" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="android.project.structure.last.selected" value="app" />
@@ -2528,7 +2527,13 @@
       <option name="project" value="LOCAL" />
       <updated>1461105849755</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="checkboxes">
+      <created>1461107192317</created>
+      <option name="number" value="00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1461107192317</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TodoView">
@@ -2588,7 +2593,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Initial Commit" />
     <MESSAGE value="minor change to get a new commit" />
     <MESSAGE value="Added login activity" />
     <MESSAGE value="Added link from main to login" />
@@ -2613,7 +2617,8 @@
     <MESSAGE value="kinda added dates" />
     <MESSAGE value="dates work" />
     <MESSAGE value="appearance things" />
-    <option name="LAST_COMMIT_MESSAGE" value="appearance things" />
+    <MESSAGE value="checkboxes" />
+    <option name="LAST_COMMIT_MESSAGE" value="checkboxes" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
@@ -2962,14 +2967,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aclogar/choremanager/EditChoreActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="67" column="0" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -3105,7 +3102,7 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/chore_item.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.8235294">
-          <caret line="8" column="28" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
+          <caret line="9" column="44" selection-start-line="9" selection-start-column="44" selection-end-line="9" selection-end-column="44" />
           <folding />
         </state>
       </provider>
@@ -3131,13 +3128,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aclogar/choremanager/EditChoreActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.222222">
+          <caret line="161" column="166" selection-start-line="161" selection-start-column="16" selection-end-line="161" selection-end-column="166" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aclogar/choremanager/ChoreAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.14487633">
-          <caret line="58" column="16" selection-start-line="58" selection-start-column="16" selection-end-line="58" selection-end-column="16" />
+        <state vertical-scroll-proportion="0.6607774">
+          <caret line="67" column="50" selection-start-line="67" selection-start-column="50" selection-end-line="67" selection-end-column="50" />
           <folding>
-            <element signature="e#1944#2238#0" expanded="true" />
-            <element signature="e#2237#2238#0" expanded="true" />
+            <element signature="e#2006#2440#0" expanded="true" />
+            <element signature="e#2439#2440#0" expanded="true" />
           </folding>
         </state>
       </provider>
