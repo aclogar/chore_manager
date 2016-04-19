@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,14 +54,25 @@ public class ChoreAdapter extends BaseAdapter {
         rowView = inflater.inflate(R.layout.chore_item, null);
         holder.title = (TextView) rowView.findViewById(R.id.chore_title);
         holder.desc = (TextView) rowView.findViewById(R.id.chore_desc);
+        holder.checkBox = (CheckBox) rowView.findViewById(R.id.checkBox);
+        holder.checkBox.setChecked(chores.get(position).isCompleted());
         holder.title.setText(chores.get(position).getTitle());
         holder.desc.setText(chores.get(position).getDescription());
+
+        holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                chores.get(position).setCompleted(isChecked);
+                Chore.saveChores(context, chores);
+            }
+        });
         if(chores.get(position).isCompleted()) {
             // TODO Auto-generated method stub
             holder.title.setPaintFlags(holder.title.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
             holder.desc.setPaintFlags(holder.desc.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
         }
+
                 rowView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -80,5 +93,6 @@ public class ChoreAdapter extends BaseAdapter {
     {
         TextView title;
         TextView desc;
+        CheckBox checkBox;
     }
 }
