@@ -50,7 +50,7 @@ public class GroupAdapter extends BaseAdapter {
         // TODO Auto-generated method stub
         Holder holder = new Holder();
         View rowView;
-        rowView = inflater.inflate(R.layout.chore_item, null);
+        rowView = inflater.inflate(R.layout.group_item, null);
         holder.title = (TextView) rowView.findViewById(R.id.chore_title);
         holder.desc = (TextView) rowView.findViewById(R.id.chore_desc);
         holder.title.setText(((Group)group.get(position)).getGroup_name());

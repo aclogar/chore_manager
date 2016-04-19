@@ -39,8 +39,9 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2fa376e3-7096-4543-85db-fa352d4f2c40" name="Default" comment="checkboxes">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/aclogar/choremanager/ChoreAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/aclogar/choremanager/ChoreAdapter.java" />
+    <list default="true" id="2fa376e3-7096-4543-85db-fa352d4f2c40" name="Default" comment="toast added to check">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/group_item.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/aclogar/choremanager/GroupAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/aclogar/choremanager/GroupAdapter.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="chore_manager.iws" />
@@ -111,16 +112,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CreateChoreActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aclogar/choremanager/CreateChoreActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="60" column="45" selection-start-line="60" selection-start-column="45" selection-end-line="60" selection-end-column="45" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aclogar/choremanager/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -179,10 +170,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ChoreAdapter.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ChoreAdapter.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aclogar/choremanager/ChoreAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6607774">
+            <state vertical-scroll-proportion="0.0">
               <caret line="67" column="50" selection-start-line="67" selection-start-column="50" selection-end-line="67" selection-end-column="50" />
               <folding>
                 <element signature="e#2006#2440#0" expanded="true" />
@@ -192,77 +183,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Chore.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aclogar/choremanager/objects/Chore.java">
+      <file leaf-file-name="group_item.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/group_item.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="374" column="5" selection-start-line="374" selection-start-column="5" selection-end-line="374" selection-end-column="5" />
+            <state vertical-scroll-proportion="-0.64705884">
+              <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GroupAdapter.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aclogar/choremanager/GroupAdapter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.33207548">
+              <caret line="52" column="54" selection-start-line="52" selection-start-column="54" selection-end-line="52" selection-end-column="54" />
               <folding>
-                <element signature="imports" expanded="false" />
-                <marker date="1461105842461" expanded="true" signature="1595:1926" placeholder="{...}" />
-                <marker date="1461105842461" expanded="true" signature="1997:2104" placeholder="{...}" />
-                <marker date="1461105842461" expanded="true" signature="2205:2299" placeholder="{...}" />
-                <marker date="1461105842461" expanded="true" signature="2404:2502" placeholder="{...}" />
-                <marker date="1461105842461" expanded="true" signature="2617:2718" placeholder="{...}" />
-                <marker date="1461105842461" expanded="true" signature="2902:3016" placeholder="{...}" />
-                <marker date="1461105842461" expanded="true" signature="3181:3292" placeholder="{...}" />
-                <marker date="1461105842461" expanded="true" signature="3470:3587" placeholder="{...}" />
-                <marker date="1461105842461" expanded="true" signature="3639:3714" placeholder="{...}" />
-                <marker date="1461105842461" expanded="true" signature="3746:3757" placeholder=" { " />
-                <marker date="1461105842461" expanded="true" signature="3773:3779" placeholder=" }" />
-                <marker date="1461105842461" expanded="true" signature="3926:5230" placeholder="{...}" />
-                <marker date="1461105842461" expanded="true" signature="5308:5658" placeholder="{...}" />
-                <marker date="1461105842461" expanded="true" signature="5318:5378" placeholder="//..." />
-                <marker date="1461105842461" expanded="true" signature="5725:6015" placeholder="{...}" />
-                <marker date="1461105842461" expanded="true" signature="5985:5996" placeholder="{...}" />
-                <marker date="1461105842461" expanded="true" signature="6079:6207" placeholder="{...}" />
-                <marker date="1461105842461" expanded="true" signature="6294:6525" placeholder="{...}" />
-                <marker date="1461105842461" expanded="true" signature="6592:6729" placeholder="{...}" />
-                <marker date="1461105842461" expanded="false" signature="10134:10145" placeholder=" { " />
-                <marker date="1461105842461" expanded="false" signature="10164:10170" placeholder=" }" />
-                <marker date="1461105842461" expanded="false" signature="10222:10233" placeholder=" { " />
-                <marker date="1461105842461" expanded="false" signature="10264:10270" placeholder=" }" />
-                <marker date="1461105842461" expanded="false" signature="10300:10311" placeholder=" { " />
-                <marker date="1461105842461" expanded="false" signature="10324:10330" placeholder=" }" />
-                <marker date="1461105842461" expanded="false" signature="10370:10381" placeholder=" { " />
-                <marker date="1461105842461" expanded="false" signature="10400:10406" placeholder=" }" />
-                <marker date="1461105842461" expanded="false" signature="10452:10463" placeholder=" { " />
-                <marker date="1461105842461" expanded="false" signature="10481:10487" placeholder=" }" />
-                <marker date="1461105842461" expanded="true" signature="10548:10559" placeholder=" { " />
-                <marker date="1461105842461" expanded="true" signature="10588:10594" placeholder=" }" />
-                <marker date="1461105842461" expanded="true" signature="10644:10827" placeholder="{...}" />
-                <marker date="1461105842461" expanded="false" signature="10879:10890" placeholder=" { " />
-                <marker date="1461105842461" expanded="false" signature="10925:10931" placeholder=" }" />
-                <marker date="1461105842461" expanded="false" signature="10964:10975" placeholder=" { " />
-                <marker date="1461105842461" expanded="false" signature="10991:10997" placeholder=" }" />
-                <marker date="1461105842461" expanded="false" signature="11043:11054" placeholder=" { " />
-                <marker date="1461105842461" expanded="false" signature="11079:11085" placeholder=" }" />
-                <marker date="1461105842461" expanded="false" signature="11120:11131" placeholder=" { " />
-                <marker date="1461105842461" expanded="false" signature="11149:11155" placeholder=" }" />
-                <marker date="1461105842461" expanded="false" signature="11205:11216" placeholder=" { " />
-                <marker date="1461105842461" expanded="false" signature="11245:11251" placeholder=" }" />
-                <marker date="1461105842461" expanded="false" signature="11284:11295" placeholder=" { " />
-                <marker date="1461105842461" expanded="false" signature="11311:11317" placeholder=" }" />
-                <marker date="1461105842461" expanded="false" signature="11363:11374" placeholder=" { " />
-                <marker date="1461105842461" expanded="false" signature="11399:11405" placeholder=" }" />
-                <marker date="1461105842461" expanded="false" signature="11441:11452" placeholder=" { " />
-                <marker date="1461105842461" expanded="false" signature="11473:11479" placeholder=" }" />
-                <marker date="1461105842461" expanded="false" signature="11533:11544" placeholder=" { " />
-                <marker date="1461105842461" expanded="false" signature="11579:11585" placeholder=" }" />
-                <marker date="1461105842461" expanded="false" signature="11616:11627" placeholder=" { " />
-                <marker date="1461105842461" expanded="false" signature="11643:11649" placeholder=" }" />
-                <marker date="1461105842461" expanded="false" signature="11693:11704" placeholder=" { " />
-                <marker date="1461105842461" expanded="false" signature="11729:11735" placeholder=" }" />
-                <marker date="1461105842461" expanded="false" signature="11765:11776" placeholder=" { " />
-                <marker date="1461105842461" expanded="false" signature="11792:11798" placeholder=" }" />
-                <marker date="1461105842461" expanded="false" signature="11841:11852" placeholder=" { " />
-                <marker date="1461105842461" expanded="false" signature="11877:11883" placeholder=" }" />
-                <marker date="1461105842461" expanded="false" signature="11917:11928" placeholder=" { " />
-                <marker date="1461105842461" expanded="false" signature="11945:11951" placeholder=" }" />
-                <marker date="1461105842461" expanded="true" signature="12000:12011" placeholder=" { " />
-                <marker date="1461105842461" expanded="true" signature="12038:12044" placeholder=" }" />
-                <marker date="1461105842461" expanded="false" signature="14220:15310" placeholder="{...}" />
-                <marker date="1461105842461" expanded="true" signature="14301:15304" placeholder="{...}" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#1717#2284#0" expanded="true" />
+                <element signature="e#2283#2284#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -1907,7 +1849,6 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/content_main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/group_page.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/aclogar/choremanager/objects/Group.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/aclogar/choremanager/GroupAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_group_select.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/aclogar/choremanager/GroupActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/menu/main.xml" />
@@ -1924,6 +1865,8 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/aclogar/choremanager/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/chore_item.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/aclogar/choremanager/ChoreAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/group_item.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/aclogar/choremanager/GroupAdapter.java" />
       </list>
     </option>
   </component>
@@ -2086,6 +2029,36 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="menu" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="chore_manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="chore_manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="layout" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -2197,6 +2170,7 @@
       <recent name="com.aclogar.choremanager" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Anthony\Documents\Android\Anthony\chore_manager\app\src\main\res\layout" />
       <recent name="C:\Users\Anthony\Documents\Android\Anthony\chore_manager\app\src\main\res\drawable-mdpi" />
     </key>
     <key name="android.template.parentActivityClass">
@@ -2533,7 +2507,13 @@
       <option name="project" value="LOCAL" />
       <updated>1461107192317</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="toast added to check">
+      <created>1461108311510</created>
+      <option name="number" value="00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1461108311510</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TodoView">
@@ -2593,7 +2573,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="minor change to get a new commit" />
     <MESSAGE value="Added login activity" />
     <MESSAGE value="Added link from main to login" />
     <MESSAGE value="added gradle stuff" />
@@ -2618,7 +2597,8 @@
     <MESSAGE value="dates work" />
     <MESSAGE value="appearance things" />
     <MESSAGE value="checkboxes" />
-    <option name="LAST_COMMIT_MESSAGE" value="checkboxes" />
+    <MESSAGE value="toast added to check" />
+    <option name="LAST_COMMIT_MESSAGE" value="toast added to check" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
@@ -2641,19 +2621,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_main.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#326#359#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/nav_header_main.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -2869,13 +2836,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aclogar/choremanager/GroupAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="69" column="11" selection-start-line="69" selection-start-column="11" selection-end-line="69" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/nav_header_main.xml">
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -2981,70 +2941,70 @@
           <caret line="374" column="5" selection-start-line="374" selection-start-column="5" selection-end-line="374" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="false" />
-            <marker date="1461105842461" expanded="true" signature="1595:1926" placeholder="{...}" />
-            <marker date="1461105842461" expanded="true" signature="1997:2104" placeholder="{...}" />
-            <marker date="1461105842461" expanded="true" signature="2205:2299" placeholder="{...}" />
-            <marker date="1461105842461" expanded="true" signature="2404:2502" placeholder="{...}" />
-            <marker date="1461105842461" expanded="true" signature="2617:2718" placeholder="{...}" />
-            <marker date="1461105842461" expanded="true" signature="2902:3016" placeholder="{...}" />
-            <marker date="1461105842461" expanded="true" signature="3181:3292" placeholder="{...}" />
-            <marker date="1461105842461" expanded="true" signature="3470:3587" placeholder="{...}" />
-            <marker date="1461105842461" expanded="true" signature="3639:3714" placeholder="{...}" />
-            <marker date="1461105842461" expanded="true" signature="3746:3757" placeholder=" { " />
-            <marker date="1461105842461" expanded="true" signature="3773:3779" placeholder=" }" />
-            <marker date="1461105842461" expanded="true" signature="3926:5230" placeholder="{...}" />
-            <marker date="1461105842461" expanded="true" signature="5308:5658" placeholder="{...}" />
-            <marker date="1461105842461" expanded="true" signature="5318:5378" placeholder="//..." />
-            <marker date="1461105842461" expanded="true" signature="5725:6015" placeholder="{...}" />
-            <marker date="1461105842461" expanded="true" signature="5985:5996" placeholder="{...}" />
-            <marker date="1461105842461" expanded="true" signature="6079:6207" placeholder="{...}" />
-            <marker date="1461105842461" expanded="true" signature="6294:6525" placeholder="{...}" />
-            <marker date="1461105842461" expanded="true" signature="6592:6729" placeholder="{...}" />
-            <marker date="1461105842461" expanded="false" signature="10134:10145" placeholder=" { " />
-            <marker date="1461105842461" expanded="false" signature="10164:10170" placeholder=" }" />
-            <marker date="1461105842461" expanded="false" signature="10222:10233" placeholder=" { " />
-            <marker date="1461105842461" expanded="false" signature="10264:10270" placeholder=" }" />
-            <marker date="1461105842461" expanded="false" signature="10300:10311" placeholder=" { " />
-            <marker date="1461105842461" expanded="false" signature="10324:10330" placeholder=" }" />
-            <marker date="1461105842461" expanded="false" signature="10370:10381" placeholder=" { " />
-            <marker date="1461105842461" expanded="false" signature="10400:10406" placeholder=" }" />
-            <marker date="1461105842461" expanded="false" signature="10452:10463" placeholder=" { " />
-            <marker date="1461105842461" expanded="false" signature="10481:10487" placeholder=" }" />
-            <marker date="1461105842461" expanded="true" signature="10548:10559" placeholder=" { " />
-            <marker date="1461105842461" expanded="true" signature="10588:10594" placeholder=" }" />
-            <marker date="1461105842461" expanded="true" signature="10644:10827" placeholder="{...}" />
-            <marker date="1461105842461" expanded="false" signature="10879:10890" placeholder=" { " />
-            <marker date="1461105842461" expanded="false" signature="10925:10931" placeholder=" }" />
-            <marker date="1461105842461" expanded="false" signature="10964:10975" placeholder=" { " />
-            <marker date="1461105842461" expanded="false" signature="10991:10997" placeholder=" }" />
-            <marker date="1461105842461" expanded="false" signature="11043:11054" placeholder=" { " />
-            <marker date="1461105842461" expanded="false" signature="11079:11085" placeholder=" }" />
-            <marker date="1461105842461" expanded="false" signature="11120:11131" placeholder=" { " />
-            <marker date="1461105842461" expanded="false" signature="11149:11155" placeholder=" }" />
-            <marker date="1461105842461" expanded="false" signature="11205:11216" placeholder=" { " />
-            <marker date="1461105842461" expanded="false" signature="11245:11251" placeholder=" }" />
-            <marker date="1461105842461" expanded="false" signature="11284:11295" placeholder=" { " />
-            <marker date="1461105842461" expanded="false" signature="11311:11317" placeholder=" }" />
-            <marker date="1461105842461" expanded="false" signature="11363:11374" placeholder=" { " />
-            <marker date="1461105842461" expanded="false" signature="11399:11405" placeholder=" }" />
-            <marker date="1461105842461" expanded="false" signature="11441:11452" placeholder=" { " />
-            <marker date="1461105842461" expanded="false" signature="11473:11479" placeholder=" }" />
-            <marker date="1461105842461" expanded="false" signature="11533:11544" placeholder=" { " />
-            <marker date="1461105842461" expanded="false" signature="11579:11585" placeholder=" }" />
-            <marker date="1461105842461" expanded="false" signature="11616:11627" placeholder=" { " />
-            <marker date="1461105842461" expanded="false" signature="11643:11649" placeholder=" }" />
-            <marker date="1461105842461" expanded="false" signature="11693:11704" placeholder=" { " />
-            <marker date="1461105842461" expanded="false" signature="11729:11735" placeholder=" }" />
-            <marker date="1461105842461" expanded="false" signature="11765:11776" placeholder=" { " />
-            <marker date="1461105842461" expanded="false" signature="11792:11798" placeholder=" }" />
-            <marker date="1461105842461" expanded="false" signature="11841:11852" placeholder=" { " />
-            <marker date="1461105842461" expanded="false" signature="11877:11883" placeholder=" }" />
-            <marker date="1461105842461" expanded="false" signature="11917:11928" placeholder=" { " />
-            <marker date="1461105842461" expanded="false" signature="11945:11951" placeholder=" }" />
-            <marker date="1461105842461" expanded="true" signature="12000:12011" placeholder=" { " />
-            <marker date="1461105842461" expanded="true" signature="12038:12044" placeholder=" }" />
-            <marker date="1461105842461" expanded="false" signature="14220:15310" placeholder="{...}" />
-            <marker date="1461105842461" expanded="true" signature="14301:15304" placeholder="{...}" />
+            <marker date="1461105842461" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1461105842461" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1461105842461" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1461105842461" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1461105842461" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1461105842461" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1461105842461" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1461105842461" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1461105842461" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1461105842461" expanded="true" signature="-1:-1" placeholder=" { " />
+            <marker date="1461105842461" expanded="true" signature="-1:-1" placeholder=" }" />
+            <marker date="1461105842461" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1461105842461" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1461105842461" expanded="true" signature="-1:-1" placeholder="//..." />
+            <marker date="1461105842461" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1461105842461" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1461105842461" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1461105842461" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1461105842461" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1461105842461" expanded="false" signature="-1:-1" placeholder=" { " />
+            <marker date="1461105842461" expanded="false" signature="-1:-1" placeholder=" }" />
+            <marker date="1461105842461" expanded="false" signature="-1:-1" placeholder=" { " />
+            <marker date="1461105842461" expanded="false" signature="-1:-1" placeholder=" }" />
+            <marker date="1461105842461" expanded="false" signature="-1:-1" placeholder=" { " />
+            <marker date="1461105842461" expanded="false" signature="-1:-1" placeholder=" }" />
+            <marker date="1461105842461" expanded="false" signature="-1:-1" placeholder=" { " />
+            <marker date="1461105842461" expanded="false" signature="-1:-1" placeholder=" }" />
+            <marker date="1461105842461" expanded="false" signature="-1:-1" placeholder=" { " />
+            <marker date="1461105842461" expanded="false" signature="-1:-1" placeholder=" }" />
+            <marker date="1461105842461" expanded="true" signature="-1:-1" placeholder=" { " />
+            <marker date="1461105842461" expanded="true" signature="-1:-1" placeholder=" }" />
+            <marker date="1461105842461" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1461105842461" expanded="false" signature="-1:-1" placeholder=" { " />
+            <marker date="1461105842461" expanded="false" signature="-1:-1" placeholder=" }" />
+            <marker date="1461105842461" expanded="false" signature="-1:-1" placeholder=" { " />
+            <marker date="1461105842461" expanded="false" signature="-1:-1" placeholder=" }" />
+            <marker date="1461105842461" expanded="false" signature="-1:-1" placeholder=" { " />
+            <marker date="1461105842461" expanded="false" signature="-1:-1" placeholder=" }" />
+            <marker date="1461105842461" expanded="false" signature="-1:-1" placeholder=" { " />
+            <marker date="1461105842461" expanded="false" signature="-1:-1" placeholder=" }" />
+            <marker date="1461105842461" expanded="false" signature="-1:-1" placeholder=" { " />
+            <marker date="1461105842461" expanded="false" signature="-1:-1" placeholder=" }" />
+            <marker date="1461105842461" expanded="false" signature="-1:-1" placeholder=" { " />
+            <marker date="1461105842461" expanded="false" signature="-1:-1" placeholder=" }" />
+            <marker date="1461105842461" expanded="false" signature="-1:-1" placeholder=" { " />
+            <marker date="1461105842461" expanded="false" signature="-1:-1" placeholder=" }" />
+            <marker date="1461105842461" expanded="false" signature="-1:-1" placeholder=" { " />
+            <marker date="1461105842461" expanded="false" signature="-1:-1" placeholder=" }" />
+            <marker date="1461105842461" expanded="false" signature="-1:-1" placeholder=" { " />
+            <marker date="1461105842461" expanded="false" signature="-1:-1" placeholder=" }" />
+            <marker date="1461105842461" expanded="false" signature="-1:-1" placeholder=" { " />
+            <marker date="1461105842461" expanded="false" signature="-1:-1" placeholder=" }" />
+            <marker date="1461105842461" expanded="false" signature="-1:-1" placeholder=" { " />
+            <marker date="1461105842461" expanded="false" signature="-1:-1" placeholder=" }" />
+            <marker date="1461105842461" expanded="false" signature="-1:-1" placeholder=" { " />
+            <marker date="1461105842461" expanded="false" signature="-1:-1" placeholder=" }" />
+            <marker date="1461105842461" expanded="false" signature="-1:-1" placeholder=" { " />
+            <marker date="1461105842461" expanded="false" signature="-1:-1" placeholder=" }" />
+            <marker date="1461105842461" expanded="false" signature="-1:-1" placeholder=" { " />
+            <marker date="1461105842461" expanded="false" signature="-1:-1" placeholder=" }" />
+            <marker date="1461105842461" expanded="true" signature="-1:-1" placeholder=" { " />
+            <marker date="1461105842461" expanded="true" signature="-1:-1" placeholder=" }" />
+            <marker date="1461105842461" expanded="false" signature="-1:-1" placeholder="{...}" />
+            <marker date="1461105842461" expanded="true" signature="-1:-1" placeholder="{...}" />
           </folding>
         </state>
       </provider>
@@ -3138,11 +3098,34 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aclogar/choremanager/ChoreAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6607774">
+        <state vertical-scroll-proportion="0.0">
           <caret line="67" column="50" selection-start-line="67" selection-start-column="50" selection-end-line="67" selection-end-column="50" />
           <folding>
             <element signature="e#2006#2440#0" expanded="true" />
             <element signature="e#2439#2440#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/group_item.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.64705884">
+          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aclogar/choremanager/GroupAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33207548">
+          <caret line="52" column="54" selection-start-line="52" selection-start-column="54" selection-end-line="52" selection-end-column="54" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1717#2284#0" expanded="true" />
+            <element signature="e#2283#2284#0" expanded="true" />
           </folding>
         </state>
       </provider>
