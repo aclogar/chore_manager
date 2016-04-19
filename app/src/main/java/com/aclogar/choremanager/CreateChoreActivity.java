@@ -60,11 +60,6 @@ public class CreateChoreActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, itemsPriority);
         dropdownPriority.setAdapter(adapter);
 
-        Spinner dropdownCategory = (Spinner)findViewById(R.id.spinnerChoreCategory);
-        String[] itemsCategory = new String[]{"None"};
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, itemsCategory);
-        dropdownCategory.setAdapter(adapter);
-
         Button add = (Button) findViewById(R.id.chore_add_button);
         if (add != null) {
             add.setOnClickListener(new View.OnClickListener() {

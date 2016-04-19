@@ -67,11 +67,6 @@ public class EditChoreActivity extends AppCompatActivity {
         dropdownPriority.setAdapter(adapter);
 
 
-        Spinner dropdownCategory = (Spinner)findViewById(R.id.spinnerChoreCategory);
-        String[] itemsCategory = new String[]{"None"};
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, itemsCategory);
-        dropdownCategory.setAdapter(adapter);
-
         inputTitle = (EditText)findViewById(R.id.inputChoreName);
         inputDesc  = (EditText)findViewById(R.id.inputChoreDescription);
         inputAssignee = (EditText)findViewById(R.id.inputChoreAssignee);

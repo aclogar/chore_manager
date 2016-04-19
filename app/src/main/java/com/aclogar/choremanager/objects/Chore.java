@@ -25,6 +25,12 @@ import java.util.concurrent.TimeoutException;
 public class Chore {
 
 
+    public static final String TITLE = "TITLE_ASCENDING";
+    public static final String TITLE_DESCENDING = "TITLE_DESCENDING";
+    public static final String ASSIGNEE = "ASSIGNEE_ASCENDING";
+    public static final String ASSIGNEE_DESCENDING = "ASSIGNEE_DESCENDING";
+    public static final String DUE_DATE = "DUE_DATE";
+    public static final String PRIORITY = "PRIORITY";
     private static final String API_URL = "http://www.aclogar.com:5000/chores/api/v1.0/";
     private String title;
     private String description;
@@ -36,6 +42,7 @@ public class Chore {
     private int priority;
     private ArrayList<String> categories = new ArrayList<>();
     private boolean completed;
+
 
     public Chore( String title, String description, String owner_id, String assigne_id
             , String group_id, Date assgined_date, Date due_date,int priority, ArrayList<String> categories) {
@@ -50,7 +57,6 @@ public class Chore {
         this.categories = categories;
     }
 
-
     public Chore( String title, String description, String owner_id) {
         this(title, description, owner_id, owner_id, null, null, null, 3, new ArrayList<String>());
     }
@@ -58,6 +64,7 @@ public class Chore {
     public Chore( String title, String description, String owner_id, ArrayList<String> categories) {
         this(title, description, owner_id, owner_id, null, null, null, 3, categories);
     }
+
 
     public Chore(String title, String description, String owner_id, String assignee_id, int priority) {
         this(title, description, owner_id, assignee_id, null, null, null, priority, null);
@@ -70,14 +77,13 @@ public class Chore {
     public Chore( String title, String description, String owner_id, String assigne_id
             , String group_id, Date assgined_date,Date due_date, ArrayList<String> categories) {
 
-        this(title, description, owner_id, assigne_id, group_id, assgined_date, due_date,3,categories);
+        this(title, description, owner_id, assigne_id, group_id, assgined_date, due_date, 3, categories);
     }
-
 
     public Chore( String title, String description, String owner_id, String assigne_id
             , String group_id ,Date due_date, ArrayList<String> categories) {
 
-        this(title, description, owner_id, assigne_id, group_id, new Date(), due_date,3,categories);
+        this(title, description, owner_id, assigne_id, group_id, new Date(), due_date, 3, categories);
     }
 
     public Chore( String title, String description, String owner_id, String assigne_id
@@ -90,7 +96,6 @@ public class Chore {
         this.title = title;
         this.description = description;
     }
-
 
     public Chore(String title) {
         this(title, "");
@@ -161,7 +166,7 @@ public class Chore {
         saveChores(context, chores);
     }
 
-    public static void replaceChore(Context context, Chore oldChore, Chore newChore){
+    public static void replaceChore(Context context, Chore oldChore, Chore newChore) {
         ArrayList<Chore> chores = getAllChores(context);
         int index = chores.indexOf((Chore) oldChore);
         chores.remove(oldChore);
@@ -169,10 +174,90 @@ public class Chore {
         Chore.saveChores(context, chores);
     }
 
-    public static void deleteChore(Context context, Chore chore){
+    public static void deleteChore(Context context, Chore chore) {
         ArrayList<Chore> chores = getAllChores(context);
         chores.remove(chore);
         Chore.saveChores(context, chores);
+    }
+
+    private static int compareTitleAsc(Chore chore1, Chore chore2) {
+        return chore1.getTitle().compareToIgnoreCase(chore2.getTitle());
+    }
+
+    private static int compareTitleDesc(Chore chore1, Chore chore2) {
+        return chore2.getTitle().compareToIgnoreCase(chore1.getTitle());
+    }
+
+    private static int compareAssigneeAsc(Chore chore1, Chore chore2) {
+        return chore1.getAssigne_id().compareToIgnoreCase(chore2.getAssigne_id());
+    }
+
+    private static int compareAssigneeDesc(Chore chore1, Chore chore2) {
+        return chore2.getAssigne_id().compareToIgnoreCase(chore1.getAssigne_id());
+    }
+
+    private static int comparePriorityAsc(Chore chore1, Chore chore2) {
+        return chore1.getPriority() - chore2.getPriority();
+    }
+
+    private static int compareDueDate(Chore chore1, Chore chore2) {
+        if (chore1.due_date == null && chore2.due_date == null)
+            return 0;
+        else if (chore1.due_date == null)
+            return 1;
+        else if (chore2.due_date == null)
+            return -1;
+        else return chore1.getDue_date().compareTo(chore2.getDue_date());
+    }
+
+    public static ArrayList<Chore> sortBy(Context context, String sortBy) {
+        ArrayList<Chore> chores = getAllChores(context);
+
+        Chore tmp;
+        int i;
+        boolean unsorted = true;
+
+        while (unsorted) {
+            unsorted = false;
+            for (i = 0; i < chores.size() - 1; i++) {
+                if (sortBy.equals(TITLE)) {
+                    if (Chore.compareTitleAsc(chores.get(i), chores.get(i + 1)) > 0)   // change to > for ascending sort
+                    {
+                        tmp = chores.get(i);                //swap elements
+                        chores.remove(tmp);
+                        chores.add(i + 1, tmp);
+                        unsorted = true;              //shows a swap occurred
+                    }
+                } else if (sortBy.equals(ASSIGNEE)) {
+                    if (Chore.compareAssigneeAsc(chores.get(i), chores.get(i + 1)) > 0)   // change to > for ascending sort
+                    {
+                        tmp = chores.get(i);                //swap elements
+                        chores.remove(tmp);
+                        chores.add(i + 1, tmp);
+                        unsorted = true;              //shows a swap occurred
+                    }
+                } else if (sortBy.equals(DUE_DATE)) {
+                    if (Chore.compareDueDate(chores.get(i), chores.get(i + 1)) > 0)   // change to > for ascending sort
+                    {
+                        tmp = chores.get(i);                //swap elements
+                        chores.remove(tmp);
+                        chores.add(i + 1, tmp);
+                        unsorted = true;              //shows a swap occurred
+                    }
+                } else if (sortBy.equals(PRIORITY)) {
+                    if (Chore.comparePriorityAsc(chores.get(i), chores.get(i + 1)) > 0)   // change to > for ascending sort
+                    {
+                        tmp = chores.get(i);                //swap elements
+                        chores.remove(tmp);
+                        chores.add(i + 1, tmp);
+                        unsorted = true;              //shows a swap occurred
+                    }
+                }
+            }
+        }
+
+
+        return chores;
     }
 
     public String getDescription() {
@@ -264,113 +349,6 @@ public class Chore {
         this.completed = completed;
     }
 
-    private static class getJSON extends AsyncTask<String, Void, String>{
-
-        @Override
-        protected String doInBackground(String... endpoint) {
-            if (endpoint.length != 1){
-                this.cancel(true);
-            }
-
-            try {
-                URL url = new URL(API_URL + endpoint[0]);
-                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-                try {
-                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
-                    StringBuilder stringBuilder = new StringBuilder();
-                    String line;
-                    while ((line = bufferedReader.readLine()) != null) {
-                        stringBuilder.append(line).append("\n");
-                    }
-                    bufferedReader.close();
-                    return stringBuilder.toString();
-                }
-                finally{
-                    urlConnection.disconnect();
-                }
-            }
-            catch(Exception e) {
-                Log.e("ERROR", e.getMessage(), e);
-                return null;
-            }
-        }
-    }
-
-    private static int compareTitleAsc(Chore chore1, Chore chore2){
-        return chore1.getTitle().compareToIgnoreCase(chore2.getTitle());
-    }
-
-    private static int compareTitleDesc(Chore chore1, Chore chore2){
-        return chore2.getTitle().compareToIgnoreCase(chore1.getTitle());
-    }
-
-    private static int compareAssigneeAsc(Chore chore1, Chore chore2){
-        return chore1.getAssigne_id().compareToIgnoreCase(chore2.getAssigne_id());
-    }
-
-    private static int compareAssigneeDesc(Chore chore1, Chore chore2){
-        return chore2.getAssigne_id().compareToIgnoreCase(chore1.getAssigne_id());
-    }
-
-    private static int compareDueDate(Chore chore1, Chore chore2){
-        if (chore1.due_date == null && chore2.due_date == null)
-            return 0;
-        else if(chore1.due_date == null)
-            return 1;
-        else if(chore2.due_date == null)
-            return -1;
-        else return chore1.getDue_date().compareTo(chore2.getDue_date());
-    }
-
-    public static final String TITLE = "TITLE_ASCENDING";
-    public static final String TITLE_DESCENDING = "TITLE_DESCENDING";
-    public static final String ASSIGNEE = "ASSIGNEE_ASCENDING";
-    public static final String ASSIGNEE_DESCENDING = "ASSIGNEE_DESCENDING";
-    public static final String DUE_DATE = "DUE_DATE";
-
-    public static ArrayList<Chore> sortBy(Context context, String sortBy){
-        ArrayList<Chore> chores = getAllChores(context);
-
-            Chore tmp;
-            int i;
-            boolean unsorted = true;
-
-            while (unsorted){
-                unsorted = false;
-                for( i=0;  i < chores.size()-1;  i++ )
-                {
-                    if (sortBy.equals(TITLE)) {
-                        if (Chore.compareTitleAsc(chores.get(i), chores.get(i + 1)) > 0)   // change to > for ascending sort
-                        {
-                            tmp = chores.get(i);                //swap elements
-                            chores.remove(tmp);
-                            chores.add(i + 1, tmp);
-                            unsorted = true;              //shows a swap occurred
-                        }
-                    } else if(sortBy.equals(ASSIGNEE)) {
-                        if (Chore.compareAssigneeAsc(chores.get(i), chores.get(i + 1)) > 0)   // change to > for ascending sort
-                        {
-                            tmp = chores.get(i);                //swap elements
-                            chores.remove(tmp);
-                            chores.add(i + 1, tmp);
-                            unsorted = true;              //shows a swap occurred
-                        }
-                    }else if(sortBy.equals(DUE_DATE)) {
-                        if (Chore.compareDueDate(chores.get(i), chores.get(i + 1)) > 0)   // change to > for ascending sort
-                        {
-                            tmp = chores.get(i);                //swap elements
-                            chores.remove(tmp);
-                            chores.add(i + 1, tmp);
-                            unsorted = true;              //shows a swap occurred
-                        }
-                    }
-                }
-            }
-
-
-        return chores;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -408,5 +386,35 @@ public class Chore {
         result = 31 * result + getPriority();
         result = 31 * result + (getCategories() != null ? getCategories().hashCode() : 0);
         return result;
+    }
+
+    private static class getJSON extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... endpoint) {
+            if (endpoint.length != 1) {
+                this.cancel(true);
+            }
+
+            try {
+                URL url = new URL(API_URL + endpoint[0]);
+                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+                try {
+                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+                    StringBuilder stringBuilder = new StringBuilder();
+                    String line;
+                    while ((line = bufferedReader.readLine()) != null) {
+                        stringBuilder.append(line).append("\n");
+                    }
+                    bufferedReader.close();
+                    return stringBuilder.toString();
+                } finally {
+                    urlConnection.disconnect();
+                }
+            } catch (Exception e) {
+                Log.e("ERROR", e.getMessage(), e);
+                return null;
+            }
+        }
     }
 }

@@ -47,20 +47,21 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
         main=this;
         Spinner dropdown = (Spinner)findViewById(R.id.spinner1);
-        String[] items = new String[]{"None", "Assignee", "Title", "Date"};
+        String[] items = new String[]{"None", "Assignee", "Date", "Priority", "Title"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, items);
         dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 ArrayList<Chore> chores;
                 if(position == 2){
-                    chores = Chore.sortBy(view.getContext(), Chore.TITLE);
+                    chores = Chore.sortBy(view.getContext(), Chore.DUE_DATE);
                 }
                 else if(position ==1){
                     chores = Chore.sortBy(view.getContext(), Chore.ASSIGNEE);
-                }
-                else if(position == 3){
-                    chores = Chore.sortBy(view.getContext(), Chore.DUE_DATE);
+                } else if (position == 4) {
+                    chores = Chore.sortBy(view.getContext(), Chore.TITLE);
+                } else if (position == 3) {
+                    chores = Chore.sortBy(view.getContext(), Chore.PRIORITY);
                 }
                 else {
                     chores = Chore.getAllChores(view.getContext());
